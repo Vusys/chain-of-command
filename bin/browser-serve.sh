@@ -59,10 +59,16 @@ fi
 
 echo "==> Serving $base_url for the browser suite (run: composer browser)"
 
+# PHP's own server rather than `artisan serve`, which drops -d flags on its
+# child process: opcache must be off, or a php.ini with a long
+# revalidate_freq keeps serving the old code for minutes after an edit and
+# the suite passes against code that no longer exists. Laravel's router
+# script expects to run from public/, as artisan serve arranges.
+cd public
 exec env \
     APP_ENV=local \
     APP_URL="$base_url" \
     SESSION_DRIVER=file \
     CACHE_STORE=file \
     QUEUE_CONNECTION=sync \
-    php artisan serve --host="$host" --port="$port"
+    php -d opcache.enable=0 -S "$host:$port" ../vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php

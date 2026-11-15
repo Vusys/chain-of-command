@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3f3b7a49c99dfa69d50fa1f9db4d60c",
+    "content-hash": "7654bbc24278ed6d9a20763b3b837e24",
     "packages": [
         {
             "name": "brick/math",
@@ -10750,6 +10750,119 @@
             "time": "2026-11-15T14:02:53+00:00"
         },
         {
+            "name": "vusys/zefram",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vusys/zefram.git",
+                "reference": "a2d0e16d6a7f3adda76c2f6abee8c8ccb43690d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vusys/zefram/zipball/a2d0e16d6a7f3adda76c2f6abee8c8ccb43690d0",
+                "reference": "a2d0e16d6a7f3adda76c2f6abee8c8ccb43690d0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "phpunit/phpunit": "^11.5 || ^12.0"
+            },
+            "require-dev": {
+                "illuminate/console": "^11.44.2 || ^12.4.1 || ^13.0",
+                "illuminate/support": "^11.44.2 || ^12.4.1 || ^13.0",
+                "infection/extension-installer": "^0.1.2",
+                "infection/infection": "^0.29 || ^0.33 || ^0.34",
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.30",
+                "orchestra/testbench": "^9.12 || ^10.1 || ^11.0",
+                "phpstan/phpstan": "^2.2",
+                "rector/rector": "^2.6"
+            },
+            "suggest": {
+                "ext-pcov": "Required to capture per-test coverage; without it Zefram disables itself and all tests run.",
+                "laravel/framework": "For the artisan zefram:clear / zefram:stats commands."
+            },
+            "default-branch": true,
+            "bin": [
+                "bin/zefram"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vusys\\Zefram\\Laravel\\ZeframServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vusys\\Zefram\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Vusys\\Zefram\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "analyse": [
+                    "phpstan analyse"
+                ],
+                "analyze": [
+                    "@analyse"
+                ],
+                "rector": [
+                    "rector process"
+                ],
+                "rector:check": [
+                    "rector process --dry-run"
+                ],
+                "pint": [
+                    "pint"
+                ],
+                "pint:check": [
+                    "pint --test"
+                ],
+                "check": [
+                    "@pint:check",
+                    "@rector:check",
+                    "@analyse"
+                ],
+                "test": [
+                    "phpunit"
+                ],
+                "test:e2e": [
+                    "phpunit --testsuite e2e"
+                ],
+                "infection": [
+                    "infection --threads=max"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan",
+                    "email": "bryan@vuii.co.uk",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Skip PHPUnit tests whose executed code hasn't changed since they last passed. Faster than light.",
+            "keywords": [
+                "ci",
+                "coverage",
+                "phpunit",
+                "test-skipping",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/Vusys/zefram/issues",
+                "source": "https://github.com/Vusys/zefram"
+            },
+            "time": "2026-09-07T05:17:28+00:00"
+        },
+        {
             "name": "webmozart/assert",
             "version": "2.5.1",
             "source": {
@@ -10820,7 +10933,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "vusys/laravel-quantum-slipstream-drive": 20,
-        "vusys/tetryon": 20
+        "vusys/tetryon": 20,
+        "vusys/zefram": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

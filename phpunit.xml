@@ -9,6 +9,14 @@
             <directory>tests/Feature</directory>
         </testsuite>
     </testsuites>
+    <extensions>
+        <bootstrap class="Vusys\Zefram\PhpUnit\ZeframExtension">
+            <parameter name="enabled" value="true"/>
+            <parameter name="cacheDirectory" value=".zefram"/>
+            <!-- Smarty sources, not Blade: compiled templates are rebuilt, so watch what they are compiled from. -->
+            <parameter name="watchedPaths" value=".env.testing,config/**,database/migrations/**,resources/views/**/*.tpl,public/css/**"/>
+        </bootstrap>
+    </extensions>
     <source>
         <include>
             <directory>app</directory>

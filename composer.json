@@ -30,7 +30,8 @@
         "phpunit/phpunit": "^12.5.12",
         "rector/rector": "^2.0",
         "vusys/laravel-runabout": "^1.4",
-        "vusys/tetryon": "dev-feature/102-slideshow-recorder-spike"
+        "vusys/tetryon": "dev-feature/102-slideshow-recorder-spike",
+        "vusys/zefram": "dev-main"
     },
     "autoload": {
         "psr-4": {
@@ -57,10 +58,7 @@
             "Composer\\Config::disableProcessTimeout",
             "@php artisan dev"
         ],
-        "test": [
-            "@php artisan config:clear --ansi @no_additional_args",
-            "@php artisan test"
-        ],
+        "test": "@php -d pcov.enabled=1 -d pcov.directory=. -d pcov.exclude=\"~/vendor/~\" vendor/bin/phpunit",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -112,17 +110,27 @@
             "php-http/discovery": true,
             "infection/extension-installer": true
         },
-        "github-protocols": ["https"]
+        "github-protocols": [
+            "https"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": [{
-        "name": "slipstream",
-        "type": "vcs",
-        "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive.git"
-    },{
-        "name": "tetryon",
-        "type": "vcs",
-        "url": "https://github.com/Vusys/tetryon"
-    }]
+    "repositories": [
+        {
+            "name": "zefram",
+            "type": "vcs",
+            "url": "https://github.com/Vusys/zefram.git"
+        },
+        {
+            "name": "slipstream",
+            "type": "vcs",
+            "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive.git"
+        },
+        {
+            "name": "tetryon",
+            "type": "vcs",
+            "url": "https://github.com/Vusys/tetryon"
+        }
+    ]
 }
