@@ -14,7 +14,7 @@
         "laravel/tinker": "^3.0",
         "vusys/laravel-bitemporal": "^0.6",
         "vusys/laravel-nestedset": "^0.24",
-        "vusys/laravel-quantum-slipstream-drive": "dev-master",
+        "vusys/laravel-quantum-slipstream-drive": "dev-feat/compose-with-other-builders",
         "vusys/laravel-smarty": "^0.22"
     },
     "require-dev": {
@@ -117,6 +117,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
+        {
+            "name": "slipstream",
+            "type": "vcs",
+            "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive.git"
+        },
         {
             "name": "zefram",
             "type": "vcs",

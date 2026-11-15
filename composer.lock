@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7973bdf5603fc626d0067dc0e382ac9e",
+    "content-hash": "b3bff974e601a898e763c79c16168f61",
     "packages": [
         {
             "name": "brick/math",
@@ -6341,16 +6341,16 @@
         },
         {
             "name": "vusys/laravel-quantum-slipstream-drive",
-            "version": "dev-master",
+            "version": "dev-feat/compose-with-other-builders",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive.git",
-                "reference": "9003db6ad049ad980651cb90769c8f143a393ae0"
+                "reference": "1f77729172ae078822d890ac27de8c06352d4075"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/9003db6ad049ad980651cb90769c8f143a393ae0",
-                "reference": "9003db6ad049ad980651cb90769c8f143a393ae0",
+                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/1f77729172ae078822d890ac27de8c06352d4075",
+                "reference": "1f77729172ae078822d890ac27de8c06352d4075",
                 "shasum": ""
             },
             "require": {
@@ -6359,7 +6359,7 @@
             },
             "require-dev": {
                 "driftingly/rector-laravel": "^2.0",
-                "infection/infection": "^0.29 || ^0.33 || ^0.34",
+                "infection/infection": "^0.29 || ^0.33 || ^0.34 || ^0.35",
                 "larastan/larastan": "^2.9|^3.0",
                 "laravel/pint": "^1.0",
                 "orchestra/testbench": "^9.0|^10.0|^11.0",
@@ -6367,7 +6367,6 @@
                 "rector/rector": "^2.0",
                 "vusys/laravel-runabout": "dev-master"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -6381,16 +6380,55 @@
                     "Vusys\\QuantumSlipstreamDrive\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Vusys\\QuantumSlipstreamDrive\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "analyse": [
+                    "phpstan analyse"
+                ],
+                "analyze": [
+                    "@analyse"
+                ],
+                "rector": [
+                    "rector process"
+                ],
+                "rector:check": [
+                    "rector process --dry-run"
+                ],
+                "pint": [
+                    "pint"
+                ],
+                "pint:check": [
+                    "pint --test"
+                ],
+                "test": [
+                    "phpunit"
+                ],
+                "test:coverage": [
+                    "XDEBUG_MODE=coverage phpunit --coverage-text"
+                ],
+                "test:coverage-html": [
+                    "XDEBUG_MODE=coverage phpunit --coverage-html=build/coverage"
+                ],
+                "fuzz": [
+                    "phpunit --group fuzzer"
+                ],
+                "mutate": [
+                    "infection --threads=4 --no-progress"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "A scoped Eloquent identity map, process-truth engine, and query-elision planner for Laravel.",
             "support": {
-                "issues": "https://github.com/Vusys/laravel-quantum-slipstream-drive/issues",
-                "source": "https://github.com/Vusys/laravel-quantum-slipstream-drive/tree/master"
+                "source": "https://github.com/Vusys/laravel-quantum-slipstream-drive/tree/feat/compose-with-other-builders",
+                "issues": "https://github.com/Vusys/laravel-quantum-slipstream-drive/issues"
             },
-            "time": "2026-11-15T15:55:20+00:00"
+            "time": "2026-11-15T17:31:44+00:00"
         },
         {
             "name": "vusys/laravel-smarty",

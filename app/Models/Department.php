@@ -7,12 +7,15 @@ namespace App\Models;
 use DomainException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\Builder;
 use Vusys\NestedSet\Contracts\MaintainsTreeAggregates;
 use Vusys\NestedSet\NodeTrait;
+use Vusys\QuantumSlipstreamDrive\HasIdentityMap;
 
 /**
- * A node in the company tree. Not identity-mapped: NodeTrait and
- * slipstream's HasIdentityMap both replace newEloquentBuilder().
+ * A node in the company tree, identity-mapped through a builder that
+ * composes slipstream onto the nested set's own (both traits claim
+ * newEloquentBuilder(); {@see DepartmentBuilder} is both).
  *
  * Larastan can't see the columns the nestedSet() migration macro adds.
  *
@@ -23,7 +26,9 @@ use Vusys\NestedSet\NodeTrait;
  */
 class Department extends Model implements MaintainsTreeAggregates
 {
-    use NodeTrait;
+    use HasIdentityMap, NodeTrait {
+        NodeTrait::newEloquentBuilder insteadof HasIdentityMap;
+    }
 
     protected $fillable = ['name'];
 
@@ -49,6 +54,18 @@ class Department extends Model implements MaintainsTreeAggregates
         }
 
         $this->appendToNode($parent->refresh())->save();
+    }
+
+    /**
+     * @param  Builder  $query
+     * @return DepartmentBuilder<self>
+     */
+    public function newEloquentBuilder($query): DepartmentBuilder
+    {
+        /** @var DepartmentBuilder<self> $builder */
+        $builder = new DepartmentBuilder($query);
+
+        return $builder;
     }
 
     /** @return HasMany<Assignment, $this> */
