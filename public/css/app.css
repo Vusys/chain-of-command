@@ -55,3 +55,9 @@ h2 { font-size: 16px; margin: 24px 0 8px; }
 .department[draggable="true"] > h2 { cursor: grab; }
 .department.is-dragging { opacity: 0.5; }
 .department h2.is-drop-target { outline: 2px dashed var(--accent); outline-offset: 4px; border-radius: 4px; }
+
+.slider { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; color: var(--muted); }
+.slider input { flex: 1; }
+.slider output { min-width: 72px; font-variant-numeric: tabular-nums; color: var(--ink); }
+[data-chart-body] { transition: opacity 150ms ease; }
+[data-chart-body].is-changing { opacity: 0; }

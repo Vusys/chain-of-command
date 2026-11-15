@@ -30,14 +30,46 @@ class ChartController extends Controller
             ->sortBy(fn (Assignment $assignment): string => $assignment->person->name ?? '')
             ->groupBy('department_id');
 
-        return view('chart', [
+        $data = [
             'on' => $on,
             'known' => $known,
             'departments' => Department::query()->defaultOrder()->get(),
             'byDepartment' => $byDepartment,
             'headcount' => $assignments->count(),
+        ];
+
+        // The slider asks for just the part of the page that changes.
+        if ($request->boolean('partial')) {
+            return view('partials.chart-body', $data);
+        }
+
+        $months = $this->months();
+        $index = array_search($on->startOfMonth()->toDateString(), $months, true);
+
+        return view('chart', $data + [
             'previous' => $on->subMonthNoOverflow()->startOfMonth(),
             'next' => $on->addMonthNoOverflow()->startOfMonth(),
+            'months' => $months,
+            'monthList' => implode(',', $months),
+            'monthIndex' => $index === false ? count($months) - 1 : $index,
         ]);
     }
+
+    /**
+     * The first of every month from the company's founding to this one —
+     * the slider's stops.
+     *
+     * @return list<string>
+     */
+    private function months(): array
+    {
+        $months = [];
+        for ($month = CarbonImmutable::parse(self::FOUNDED); $month->lessThanOrEqualTo(CarbonImmutable::today()); $month = $month->addMonthNoOverflow()) {
+            $months[] = $month->toDateString();
+        }
+
+        return $months;
+    }
+
+    private const string FOUNDED = '2025-01-01';
 }

@@ -45,6 +45,22 @@ class ChartTest extends TestCase
         $this->get('/chart?on=2025-08-01')->assertSee('answered from memory');
     }
 
+    public function test_the_slider_has_a_stop_for_every_month_and_starts_on_the_one_shown(): void
+    {
+        $this->get('/chart?on=2025-08-15')
+            ->assertSee('data-months="2025-01-01,2025-02-01,', false)
+            ->assertSee('value="7"', false);
+    }
+
+    public function test_the_slider_fetches_only_the_part_that_changes(): void
+    {
+        $this->get('/chart?on=2025-08-01&partial=1')
+            ->assertOk()
+            ->assertSee('Kestrel Labs on 1 August 2025')
+            ->assertDontSee('<html', false)
+            ->assertDontSee('data-as-of', false);
+    }
+
     public function test_the_home_page_is_the_chart(): void
     {
         $this->get('/')->assertRedirect('/chart');

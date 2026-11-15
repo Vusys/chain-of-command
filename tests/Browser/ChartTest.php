@@ -34,6 +34,19 @@ final class ChartTest extends BrowserTestCase
             ->assertTextNear('Product', 'Farah Haddad');
     }
 
+    public function test_scrubbing_through_time_redraws_the_chart_in_place(): void
+    {
+        $this->browser()->recording('Scrub from August 2025 back to the founding')
+            ->beat('Open the chart in August 2025', fn (Browser $b): Browser => $b->visit('/chart?on=2025-08-01'))
+            ->assertSee('10 people')
+            ->beat('Scrub back to January 2025', fn (Browser $b): Browser => $b
+                ->fill('[data-as-of]', '0')
+                ->waitForText('Kestrel Labs on 1 January 2025'))
+            ->assertSee('6 people')
+            ->assertDontSee('Farah Haddad')
+            ->assertUrlIs('/chart?on=2025-01-01');
+    }
+
     public function test_a_correction_is_hidden_as_we_knew_it_then(): void
     {
         $this->browser()->recording('Dana’s pay, now and as we knew it')
