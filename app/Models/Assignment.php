@@ -7,7 +7,9 @@ namespace App\Models;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Query\Builder;
 use Vusys\Bitemporal\Bitemporal;
+use Vusys\QuantumSlipstreamDrive\HasIdentityMap;
 
 /**
  * Where a person sat, who they reported to, their title and salary, over a
@@ -26,9 +28,23 @@ use Vusys\Bitemporal\Bitemporal;
  */
 class Assignment extends Model
 {
-    use Bitemporal;
+    use Bitemporal, HasIdentityMap {
+        Bitemporal::newEloquentBuilder insteadof HasIdentityMap;
+    }
 
     protected string $temporalEntity = Person::class;
+
+    /**
+     * @param  Builder  $query
+     * @return AssignmentBuilder<self>
+     */
+    public function newEloquentBuilder($query): AssignmentBuilder
+    {
+        /** @var AssignmentBuilder<self> $builder */
+        $builder = new AssignmentBuilder($query);
+
+        return $builder;
+    }
 
     protected $guarded = [];
 

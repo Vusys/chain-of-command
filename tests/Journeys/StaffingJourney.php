@@ -13,6 +13,8 @@ use DomainException;
 use Illuminate\Support\Collection;
 use LogicException;
 use PHPUnit\Framework\Assert;
+use Vusys\Bitemporal\Facades\TemporalLens;
+use Vusys\QuantumSlipstreamDrive\Testing\AssertsIdentityMapAgrees;
 use Vusys\Runabout\Context;
 use Vusys\Runabout\Invariant;
 use Vusys\Runabout\Journey;
@@ -25,6 +27,8 @@ use Vusys\Runabout\Step;
  */
 final class StaffingJourney extends Journey
 {
+    use AssertsIdentityMapAgrees;
+
     public function steps(): array
     {
         $staffing = new Staffing;
@@ -187,6 +191,18 @@ final class StaffingJourney extends Journey
 
             Invariant::make('the department tree is intact', function (): void {
                 Assert::assertFalse(Department::isBroken(), 'The nested set is broken.');
+            }),
+
+            Invariant::make('the identity map agrees with the database', function (): void {
+                $this->assertIdentityMapAgrees(fn () => Assignment::query()->validAt($this->today())->currentKnowledge()->orderBy('id')->get());
+                $this->assertIdentityMapAgrees(fn () => TemporalLens::validAt($this->today()->subMonth(), fn () => Assignment::query()->orderBy('id')->get()));
+                // By key too: a key lookup is what the map can answer from memory.
+                $ids = Assignment::query()->withoutIdentityMap()->pluck('id')->all();
+                $this->assertIdentityMapAgrees(fn () => TemporalLens::validAt($this->today()->subMonth(), fn (): array => array_map(
+                    fn (mixed $id): ?Assignment => Assignment::query()->whereKey($id)->first(),
+                    $ids,
+                )));
+                $this->assertIdentityMapAgrees(fn () => Department::query()->defaultOrder()->get());
             }),
 
             Invariant::make('history is never destroyed', function (Context $ctx): void {
