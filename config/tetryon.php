@@ -13,13 +13,13 @@ return [
     'firefox_binary' => env('TETRYON_FIREFOX_BINARY'),
 
     'timeout' => [
-        'default'    => 5000,
+        'default' => 5000,
         'navigation' => 15000,
-        'assertion'  => 5000,
+        'assertion' => 5000,
     ],
 
     'viewport' => [
-        'width'  => 1280,
+        'width' => 1280,
         'height' => 720,
     ],
 
