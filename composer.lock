@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "15405002e8f709dd80824de44e797090",
+    "content-hash": "3cc85f3a227101746d578b62d59eb331",
     "packages": [
         {
             "name": "brick/math",
@@ -10581,16 +10581,16 @@
         },
         {
             "name": "vusys/tetryon",
-            "version": "v0.6.0",
+            "version": "dev-feature/102-slideshow-recorder-spike",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Vusys/tetryon",
-                "reference": "1840414b4f0f5da2dcf61cd0bde90c91c6511531"
+                "url": "https://github.com/Vusys/tetryon.git",
+                "reference": "23f10bd2fa5c933fd62e9e59c6a2835ea31ce094"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/1840414b4f0f5da2dcf61cd0bde90c91c6511531",
-                "reference": "1840414b4f0f5da2dcf61cd0bde90c91c6511531",
+                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/23f10bd2fa5c933fd62e9e59c6a2835ea31ce094",
+                "reference": "23f10bd2fa5c933fd62e9e59c6a2835ea31ce094",
                 "shasum": ""
             },
             "require": {
@@ -10609,6 +10609,7 @@
                 "rector/rector": "^2.0"
             },
             "suggest": {
+                "ext-gd": "For WebP-encoded report screenshots; falls back to PNG when absent.",
                 "laravel/framework": "For the Laravel integration: service provider, config publishing, tetryon:* artisan commands, and Laravel\\BrowserTestCase."
             },
             "bin": [
@@ -10627,7 +10628,57 @@
                     "Vusys\\Tetryon\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Vusys\\Tetryon\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "analyse": [
+                    "phpstan analyse"
+                ],
+                "analyze": [
+                    "@analyse"
+                ],
+                "rector": [
+                    "rector process"
+                ],
+                "rector:check": [
+                    "rector process --dry-run"
+                ],
+                "pint": [
+                    "pint"
+                ],
+                "pint:check": [
+                    "pint --test"
+                ],
+                "check": [
+                    "@pint:check",
+                    "@rector:check",
+                    "@analyse"
+                ],
+                "test": [
+                    "phpunit"
+                ],
+                "test:browser": [
+                    "phpunit --testsuite Browser"
+                ],
+                "test:todomvc": [
+                    "phpunit --testsuite TodoMvc"
+                ],
+                "todomvc:fetch": [
+                    "scripts/fetch-todomvc.sh"
+                ],
+                "test:coverage": [
+                    "XDEBUG_MODE=coverage phpunit --coverage-text"
+                ],
+                "test:coverage-html": [
+                    "XDEBUG_MODE=coverage phpunit --coverage-html=build/coverage"
+                ],
+                "infection": [
+                    "infection --threads=max"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -10654,7 +10705,7 @@
                 "issues": "https://github.com/Vusys/tetryon/issues",
                 "source": "https://github.com/Vusys/tetryon"
             },
-            "time": "2026-08-09T17:48:28+00:00"
+            "time": "2026-11-15T14:02:53+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -10726,7 +10777,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "vusys/laravel-quantum-slipstream-drive": 20
+        "vusys/laravel-quantum-slipstream-drive": 20,
+        "vusys/tetryon": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -30,7 +30,7 @@
         "phpunit/phpunit": "^12.5.12",
         "rector/rector": "^2.0",
         "vusys/laravel-runabout": "^1.4",
-        "vusys/tetryon": "^0.6"
+        "vusys/tetryon": "dev-feature/102-slideshow-recorder-spike"
     },
     "autoload": {
         "psr-4": {
@@ -88,6 +88,14 @@
             "@pint:check",
             "@rector:check",
             "@analyse"
+        ],
+        "browser:serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "bin/browser-serve.sh"
+        ],
+        "browser": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php vendor/bin/phpunit -c phpunit.browser.xml"
         ]
     },
     "extra": {
@@ -106,5 +114,10 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [{
+        "name": "tetryon",
+        "type": "vcs",
+        "url": "https://github.com/Vusys/tetryon"
+    }]
 }

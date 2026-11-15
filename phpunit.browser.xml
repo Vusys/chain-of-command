@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <!--
+        Tetryon browser suite. Kept separate from phpunit.xml because browser
+        tests need a *file* sqlite database shared with a separately-served app,
+        whereas the main suite uses an in-memory database.
+
+        Run it with `composer browser`, against a server started by
+        `composer browser:serve`. Both take the URL from APP_URL (or
+        TETRYON_BASE_URL) and share database/tetryon.sqlite.
+    -->
+    <testsuites>
+        <testsuite name="Browser">
+            <directory>tests/Browser</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_MAINTENANCE_DRIVER" value="file"/>
+        <env name="CACHE_STORE" value="array"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value="database/tetryon.sqlite"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="TETRYON_HEADLESS" value="true"/>
+    </php>
+</phpunit>
