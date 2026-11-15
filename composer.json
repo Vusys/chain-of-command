@@ -14,7 +14,7 @@
         "laravel/tinker": "^3.0",
         "vusys/laravel-bitemporal": "^0.6",
         "vusys/laravel-nestedset": "^0.24",
-        "vusys/laravel-quantum-slipstream-drive": "dev-fix/no-connection-at-boot",
+        "vusys/laravel-quantum-slipstream-drive": "dev-master",
         "vusys/laravel-smarty": "^0.22"
     },
     "require-dev": {
@@ -121,11 +121,6 @@
             "name": "zefram",
             "type": "vcs",
             "url": "https://github.com/Vusys/zefram.git"
-        },
-        {
-            "name": "slipstream",
-            "type": "vcs",
-            "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive.git"
         },
         {
             "name": "tetryon",

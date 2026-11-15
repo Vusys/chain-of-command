@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7654bbc24278ed6d9a20763b3b837e24",
+    "content-hash": "7973bdf5603fc626d0067dc0e382ac9e",
     "packages": [
         {
             "name": "brick/math",
@@ -5005,16 +5005,16 @@
         },
         {
             "name": "symfony/polyfill-php85",
-            "version": "v1.43.0",
+            "version": "v1.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php85.git",
-                "reference": "86a42cbcc07adc331481a5ab310a4024bfc227f6"
+                "reference": "94c794cb5ba51784bc259f11e9f128593297d8dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/86a42cbcc07adc331481a5ab310a4024bfc227f6",
-                "reference": "86a42cbcc07adc331481a5ab310a4024bfc227f6",
+                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/94c794cb5ba51784bc259f11e9f128593297d8dc",
+                "reference": "94c794cb5ba51784bc259f11e9f128593297d8dc",
                 "shasum": ""
             },
             "require": {
@@ -5061,7 +5061,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php85/tree/v1.43.0"
+                "source": "https://github.com/symfony/polyfill-php85/tree/v1.44.0"
             },
             "funding": [
                 {
@@ -5081,7 +5081,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:46:47+00:00"
+            "time": "2026-10-30T15:20:09+00:00"
         },
         {
             "name": "symfony/polyfill-php86",
@@ -6341,16 +6341,16 @@
         },
         {
             "name": "vusys/laravel-quantum-slipstream-drive",
-            "version": "dev-fix/no-connection-at-boot",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive.git",
-                "reference": "5872b2162b6a19fe897fa522f015511b064f9173"
+                "reference": "9003db6ad049ad980651cb90769c8f143a393ae0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/5872b2162b6a19fe897fa522f015511b064f9173",
-                "reference": "5872b2162b6a19fe897fa522f015511b064f9173",
+                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/9003db6ad049ad980651cb90769c8f143a393ae0",
+                "reference": "9003db6ad049ad980651cb90769c8f143a393ae0",
                 "shasum": ""
             },
             "require": {
@@ -6367,6 +6367,7 @@
                 "rector/rector": "^2.0",
                 "vusys/laravel-runabout": "dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -6380,55 +6381,16 @@
                     "Vusys\\QuantumSlipstreamDrive\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Vusys\\QuantumSlipstreamDrive\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "analyse": [
-                    "phpstan analyse"
-                ],
-                "analyze": [
-                    "@analyse"
-                ],
-                "rector": [
-                    "rector process"
-                ],
-                "rector:check": [
-                    "rector process --dry-run"
-                ],
-                "pint": [
-                    "pint"
-                ],
-                "pint:check": [
-                    "pint --test"
-                ],
-                "test": [
-                    "phpunit"
-                ],
-                "test:coverage": [
-                    "XDEBUG_MODE=coverage phpunit --coverage-text"
-                ],
-                "test:coverage-html": [
-                    "XDEBUG_MODE=coverage phpunit --coverage-html=build/coverage"
-                ],
-                "fuzz": [
-                    "phpunit --group fuzzer"
-                ],
-                "mutate": [
-                    "infection --threads=4 --no-progress"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "description": "A Laravel package.",
+            "description": "A scoped Eloquent identity map, process-truth engine, and query-elision planner for Laravel.",
             "support": {
-                "source": "https://github.com/Vusys/laravel-quantum-slipstream-drive/tree/fix/no-connection-at-boot",
-                "issues": "https://github.com/Vusys/laravel-quantum-slipstream-drive/issues"
+                "issues": "https://github.com/Vusys/laravel-quantum-slipstream-drive/issues",
+                "source": "https://github.com/Vusys/laravel-quantum-slipstream-drive/tree/master"
             },
-            "time": "2026-11-15T14:09:48+00:00"
+            "time": "2026-11-15T15:55:20+00:00"
         },
         {
             "name": "vusys/laravel-smarty",
