@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+    name: Static analysis & code style
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.4'
+          coverage: none
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=1G --error-format=github
+
+      - name: Run Rector (dry-run)
+        run: vendor/bin/rector process --dry-run --no-progress-bar
+
+      - name: Run Pint (test mode)
+        run: vendor/bin/pint --test
+
+  tests:
+    runs-on: ubuntu-latest
+    name: Unit, feature & journey tests
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.4'
+          coverage: none
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare environment
+        run: cp .env.example .env && php artisan key:generate
+
+      - name: Run tests
+        run: vendor/bin/phpunit
+
+  browser:
+    runs-on: ubuntu-latest
+    name: Browser tests (recorded)
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.4'
+          coverage: none
+          tools: composer:v2
+
+      - name: Install Firefox
+        uses: browser-actions/setup-firefox@0bc507ddf224827e3b1af68e014d5e42ab93e795 # v1.7.2
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          sed -i 's#^APP_URL=.*#APP_URL=http://127.0.0.1:8000#' .env
+
+      - name: Serve the app
+        run: |
+          bin/browser-serve.sh > serve.log 2>&1 &
+          for _ in $(seq 1 30); do curl -sf http://127.0.0.1:8000/up > /dev/null && exit 0; sleep 1; done
+          cat serve.log
+          exit 1
+
+      - name: Run browser tests
+        run: vendor/bin/phpunit -c phpunit.browser.xml
+        env:
+          TETRYON_SUITE_REPORT: 1
+
+      # The recorded report on every run, not only failures: it is the demo.
+      - name: Upload recorded report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: tetryon-report
+          path: tests/Browser/Artifacts
+          if-no-files-found: ignore
+          retention-days: 14
+
+  actionlint:
+    runs-on: ubuntu-latest
+    name: Lint workflows
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run actionlint
+        uses: raven-actions/actionlint@3d39aea434753780c3b3d4a1a31c854b4dbf49d7 # v2.2.0
