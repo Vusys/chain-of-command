@@ -10,7 +10,7 @@ An org chart with history: departments, people, roles and pay, viewable on any d
 | [laravel-smarty](https://github.com/Vusys/laravel-smarty) | Every view |
 | [laravel-runabout](https://github.com/Vusys/laravel-runabout) | A shuffled staffing journey with invariants (no loops in the chain of command, nobody reporting to a leaver) |
 | [tetryon](https://github.com/Vusys/tetryon) | Recorded browser tests |
-| [zefram](https://github.com/Vusys/zefram) | Not yet wired in |
+| [zefram](https://github.com/Vusys/zefram) | Skipping feature and journey tests whose executed files haven't changed (`composer test`); not the browser suite, see [zefram#80](https://github.com/Vusys/zefram/issues/80) |
 
 ## Running it
 
@@ -27,7 +27,7 @@ Open `/chart`, step through the months, and set "As we knew it on" to see what t
 
 ```bash
 composer check          # Pint, Rector, Larastan level 9
-vendor/bin/phpunit      # feature tests and the staffing journey
+composer test           # feature tests and the staffing journey, with zefram
 ```
 
 The browser suite runs against a separately served copy of the app:
