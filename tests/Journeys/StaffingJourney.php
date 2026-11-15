@@ -35,8 +35,12 @@ final class StaffingJourney extends Journey
                     $ctx->travelTo('2025-01-01');
                     $company = new Department(['name' => 'Company']);
                     $company->saveAsRoot();
-                    foreach (['Engineering', 'Operations'] as $name) {
-                        (new Department(['name' => $name]))->appendToNode($company->refresh())->save();
+                    foreach (['Engineering' => ['Platform'], 'Operations' => ['Support']] as $name => $teams) {
+                        $department = new Department(['name' => $name]);
+                        $department->appendToNode($company->refresh())->save();
+                        foreach ($teams as $team) {
+                            (new Department(['name' => $team]))->appendToNode($department->refresh())->save();
+                        }
                     }
                     $staffing->hire('Founder', 'founder@example.test', $company, null, 'Chief Executive', 150000, $this->today());
                 })
@@ -46,6 +50,29 @@ final class StaffingJourney extends Journey
                 ->after('found the company')
                 ->repeatable(max: 6)
                 ->act(fn (Context $ctx) => $ctx->travel('+1 month')),
+
+            Step::make('reorganise')
+                ->after('found the company')
+                ->repeatable(max: 3)
+                ->act(function (Context $ctx): void {
+                    $moving = $this->pickFrom($ctx, Department::query()->whereNotNull('parent_id')->get());
+                    $target = $this->pickFrom($ctx, Department::query()->get());
+                    $ctx->remember('move should be refused', $target->is($moving) || $target->isDescendantOf($moving));
+                    $ctx->remember('moved', $moving->id);
+                    $ctx->remember('under', $target->id);
+                    try {
+                        $moving->moveUnder($target);
+                        $ctx->remember('move refused', false);
+                    } catch (DomainException) {
+                        $ctx->remember('move refused', true);
+                    }
+                })
+                ->assert(function (Context $ctx): void {
+                    Assert::assertSame($ctx->get('move should be refused'), $ctx->get('move refused'), 'Only a move into its own subtree may be refused.');
+                    if ($ctx->get('move refused') === false) {
+                        Assert::assertSame($ctx->integer('under'), Department::query()->findOrFail($ctx->integer('moved'))->parent_id);
+                    }
+                }),
 
             Step::make('hire someone')
                 ->after('found the company')

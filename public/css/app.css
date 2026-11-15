@@ -26,9 +26,6 @@ h1 small { display: block; font-size: 14px; font-weight: 400; color: var(--muted
 
 .tree, .people { list-style: none; margin: 0; padding: 0; }
 .department { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; }
-.department.depth-1 { margin-left: 28px; }
-.department.depth-2 { margin-left: 56px; }
-.department.depth-3 { margin-left: 84px; }
 .department h2 { font-size: 16px; margin: 0; display: flex; align-items: center; gap: 8px; }
 .department .count { font-size: 12px; font-weight: 400; color: var(--muted); }
 .people { margin-top: 8px; }
@@ -37,3 +34,24 @@ h1 small { display: block; font-size: 14px; font-weight: 400; color: var(--muted
 .person .salary { font-variant-numeric: tabular-nums; }
 
 .debug { max-width: 960px; margin: 0 auto; padding: 0 24px 24px; color: var(--muted); font-size: 12px; }
+
+.person .name { font-weight: 600; color: var(--ink); text-decoration: none; }
+.person .name:hover { text-decoration: underline; }
+h1 small { display: block; }
+h2 { font-size: 16px; margin: 24px 0 8px; }
+.notice, .error { padding: 10px 14px; border-radius: 6px; }
+.notice { background: #e8f5e9; border: 1px solid #a5d6a7; }
+.error { background: #fdecea; border: 1px solid #f5a8a0; }
+.timeline { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+.timeline th, .timeline td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.timeline th { color: var(--muted); font-weight: 500; }
+.timeline.superseded td { color: var(--muted); text-decoration: line-through; text-decoration-color: #c5ccd3; }
+.correct summary { cursor: pointer; color: var(--accent); }
+.correct form, .change { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.correct label, .change label { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.correct input, .change input { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; }
+
+.hint { color: var(--muted); font-size: 13px; margin: -8px 0 12px; }
+.department[draggable="true"] > h2 { cursor: grab; }
+.department.is-dragging { opacity: 0.5; }
+.department h2.is-drop-target { outline: 2px dashed var(--accent); outline-offset: 4px; border-radius: 4px; }

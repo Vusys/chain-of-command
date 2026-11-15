@@ -1,18 +1,18 @@
 <?php /*__SLF:/home/bryan/code/apps/chain-of-command/resources/views/chart.tpl*/ ?><?php
-/* Smarty version 5.8.5, created on 2026-11-15 13:52:51
+/* Smarty version 5.8.5, created on 2026-11-15 16:44:50
   from 'file:/home/bryan/code/apps/chain-of-command/resources/views/chart.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.5',
-  'unifunc' => 'content_6af9b933955ba9_89391020',
+  'unifunc' => 'content_6af9e182dfd6d3_32883504',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2b9e97ae72d9bfafff79abe99c0d01b65c1f42b0' => 
     array (
       0 => '/home/bryan/code/apps/chain-of-command/resources/views/chart.tpl',
-      1 => 1794750770,
+      1 => 1794761065,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6af9b933955ba9_89391020 (\Smarty\Template $_smarty_tpl) {
+function content_6af9e182dfd6d3_32883504 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/bryan/code/apps/chain-of-command/resources/views';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 <?php /*__SLM:2*/
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10152567046af9b93394ce25_16684131', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2295300076af9e182d4e555_17817759', "title");
 ?>
 
-<?php /*__SLM:37*/
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20282472136af9b93394de18_43505782', "content");
+<?php /*__SLM:41*/
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7077149186af9e182d67a23_57675997', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/main.tpl", $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_10152567046af9b93394ce25_16684131 extends \Smarty\Runtime\Block
+class Block_2295300076af9e182d4e555_17817759 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/bryan/code/apps/chain-of-command/resources/views';
@@ -47,7 +47,7 @@ echo htmlspecialchars((string) ($_smarty_tpl->getValue('on')->format('j M Y')), 
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_20282472136af9b93394de18_43505782 extends \Smarty\Runtime\Block
+class Block_7077149186af9e182d67a23_57675997 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/bryan/code/apps/chain-of-command/resources/views';
@@ -91,63 +91,79 @@ echo htmlspecialchars((string) ($_smarty_tpl->getValue('known')->format('j F Y')
 }?></small>
     </h1>
 
+    <p class="hint">Drag a department onto another to move it there.</p>
+    <p class="error" role="alert" data-chart-message hidden></p>
+
     <ul class="tree">
-        <?php /*__SLM:18*/
+        <?php /*__SLM:21*/
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('departments'), 'department');
 $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('department')->value) {
 $foreach0DoElse = false;
 ?>
-            <?php /*__SLM:19*/
+            <?php /*__SLM:22*/
 $_smarty_tpl->assign('people', $_smarty_tpl->getValue('byDepartment')->get($_smarty_tpl->getValue('department')->id,array()), false, NULL);?>
-            <li class="department depth-<?php /*__SLM:20*/
+            <li class="department depth-<?php /*__SLM:23*/
 echo htmlspecialchars((string) ($_smarty_tpl->getValue('department')->depth), ENT_QUOTES, 'UTF-8');?>
-" data-department="<?php /*__SLM:20*/
+" data-department="<?php /*__SLM:23*/
 echo htmlspecialchars((string) ($_smarty_tpl->getValue('department')->name), ENT_QUOTES, 'UTF-8');?>
-">
-                <h2><?php /*__SLM:21*/
+" data-department-id="<?php /*__SLM:23*/
+echo htmlspecialchars((string) ($_smarty_tpl->getValue('department')->id), ENT_QUOTES, 'UTF-8');?>
+" style="margin-left: <?php /*__SLM:23*/
+echo htmlspecialchars((string) ($_smarty_tpl->getValue('department')->depth*28), ENT_QUOTES, 'UTF-8');?>
+px"<?php /*__SLM:23*/
+if ($_smarty_tpl->getValue('department')->depth > 0) {?> draggable="true"<?php /*__SLM:23*/
+}?>>
+                <h2><?php /*__SLM:24*/
 echo htmlspecialchars((string) ($_smarty_tpl->getValue('department')->name), ENT_QUOTES, 'UTF-8');?>
- <span class="count"><?php /*__SLM:21*/
+ <span class="count"><?php /*__SLM:24*/
 echo htmlspecialchars((string) ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('people'))), ENT_QUOTES, 'UTF-8');?>
 </span></h2>
-                <?php /*__SLM:22*/
+                <?php /*__SLM:25*/
 if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('people'))) {?>
                     <ul class="people">
-                        <?php /*__SLM:24*/
+                        <?php /*__SLM:27*/
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('people'), 'assignment');
 $foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('assignment')->value) {
 $foreach1DoElse = false;
 ?>
-                            <li class="person" data-person="<?php /*__SLM:25*/
+                            <li class="person" data-person="<?php /*__SLM:28*/
 echo htmlspecialchars((string) ($_smarty_tpl->getValue('assignment')->person->name), ENT_QUOTES, 'UTF-8');?>
 ">
-                                <strong><?php /*__SLM:26*/
+                                <a class="name" href="<?php /*__SLM:29*/
+echo $_smarty_tpl->getSmarty()->getFunctionHandler('route')->handle(array('name'=>'people.show','person'=>$_smarty_tpl->getValue('assignment')->person_id), $_smarty_tpl);?>
+"><?php /*__SLM:29*/
 echo htmlspecialchars((string) ($_smarty_tpl->getValue('assignment')->person->name), ENT_QUOTES, 'UTF-8');?>
-</strong>
-                                <span class="title"><?php /*__SLM:27*/
+</a>
+                                <span class="title"><?php /*__SLM:30*/
 echo htmlspecialchars((string) ($_smarty_tpl->getValue('assignment')->title), ENT_QUOTES, 'UTF-8');?>
 </span>
-                                <span class="manager"><?php /*__SLM:28*/
-if ($_smarty_tpl->getValue('assignment')->manager) {?>reports to <?php /*__SLM:28*/
+                                <span class="manager"><?php /*__SLM:31*/
+if ($_smarty_tpl->getValue('assignment')->manager) {?>reports to <?php /*__SLM:31*/
 echo htmlspecialchars((string) ($_smarty_tpl->getValue('assignment')->manager->name), ENT_QUOTES, 'UTF-8');
-/*__SLM:28*/
+/*__SLM:31*/
 }?></span>
-                                <span class="salary"><?php /*__SLM:29*/
+                                <span class="salary"><?php /*__SLM:32*/
 echo htmlspecialchars((string) ($_smarty_tpl->getSmarty()->getModifierCallback('currency')($_smarty_tpl->getValue('assignment')->salary,'GBP','en_GB',0)), ENT_QUOTES, 'UTF-8');?>
 </span>
                             </li>
-                        <?php /*__SLM:31*/
+                        <?php /*__SLM:34*/
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                     </ul>
-                <?php /*__SLM:33*/
+                <?php /*__SLM:36*/
 }?>
             </li>
-        <?php /*__SLM:35*/
+        <?php /*__SLM:38*/
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </ul>
+    <?php echo '<script'; ?>
+ src="<?php /*__SLM:40*/
+echo $_smarty_tpl->getSmarty()->getFunctionHandler('asset')->handle(array('path'=>'js/chart.js'), $_smarty_tpl);?>
+" defer><?php echo '</script'; ?>
+>
 <?php
 }
 }
