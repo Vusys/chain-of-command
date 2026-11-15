@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7973bdf5603fc626d0067dc0e382ac9e",
+    "content-hash": "ccda2c2e689ab5f141dca1b927b32e71",
     "packages": [
         {
             "name": "brick/math",
@@ -10585,16 +10585,16 @@
         },
         {
             "name": "vusys/tetryon",
-            "version": "dev-feature/102-slideshow-recorder-spike",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/tetryon.git",
-                "reference": "d471d1fa91732bb61da3283882ee1321963a19d2"
+                "reference": "58df147ca5564b040307666f2a73a21a5fa04576"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/d471d1fa91732bb61da3283882ee1321963a19d2",
-                "reference": "d471d1fa91732bb61da3283882ee1321963a19d2",
+                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/58df147ca5564b040307666f2a73a21a5fa04576",
+                "reference": "58df147ca5564b040307666f2a73a21a5fa04576",
                 "shasum": ""
             },
             "require": {
@@ -10604,7 +10604,7 @@
                 "psr/log": "^3.0"
             },
             "require-dev": {
-                "infection/infection": "^0.29 || ^0.33 || ^0.34",
+                "infection/infection": "^0.29 || ^0.33 || ^0.34 || ^0.35",
                 "larastan/larastan": "^3.0",
                 "laravel/pint": "^1.18",
                 "orchestra/testbench": "^9.0 || ^10.0 || ^11.0",
@@ -10632,57 +10632,7 @@
                     "Vusys\\Tetryon\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Vusys\\Tetryon\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "analyse": [
-                    "phpstan analyse"
-                ],
-                "analyze": [
-                    "@analyse"
-                ],
-                "rector": [
-                    "rector process"
-                ],
-                "rector:check": [
-                    "rector process --dry-run"
-                ],
-                "pint": [
-                    "pint"
-                ],
-                "pint:check": [
-                    "pint --test"
-                ],
-                "check": [
-                    "@pint:check",
-                    "@rector:check",
-                    "@analyse"
-                ],
-                "test": [
-                    "phpunit"
-                ],
-                "test:browser": [
-                    "phpunit --testsuite Browser"
-                ],
-                "test:todomvc": [
-                    "phpunit --testsuite TodoMvc"
-                ],
-                "todomvc:fetch": [
-                    "scripts/fetch-todomvc.sh"
-                ],
-                "test:coverage": [
-                    "XDEBUG_MODE=coverage phpunit --coverage-text"
-                ],
-                "test:coverage-html": [
-                    "XDEBUG_MODE=coverage phpunit --coverage-html=build/coverage"
-                ],
-                "infection": [
-                    "infection --threads=max"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -10709,7 +10659,7 @@
                 "issues": "https://github.com/Vusys/tetryon/issues",
                 "source": "https://github.com/Vusys/tetryon"
             },
-            "time": "2026-11-15T17:21:05+00:00"
+            "time": "2026-11-15T23:01:33+00:00"
         },
         {
             "name": "vusys/zefram",
@@ -10895,7 +10845,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "vusys/laravel-quantum-slipstream-drive": 20,
-        "vusys/tetryon": 20,
         "vusys/zefram": 20
     },
     "prefer-stable": true,

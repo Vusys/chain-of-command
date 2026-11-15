@@ -30,7 +30,7 @@
         "phpunit/phpunit": "^12.5.12",
         "rector/rector": "^2.0",
         "vusys/laravel-runabout": "^1.4",
-        "vusys/tetryon": "dev-feature/102-slideshow-recorder-spike",
+        "vusys/tetryon": "^0.7",
         "vusys/zefram": "dev-main"
     },
     "autoload": {
@@ -121,11 +121,6 @@
             "name": "zefram",
             "type": "vcs",
             "url": "https://github.com/Vusys/zefram.git"
-        },
-        {
-            "name": "tetryon",
-            "type": "vcs",
-            "url": "https://github.com/Vusys/tetryon"
         }
     ]
 }
