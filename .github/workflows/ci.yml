@@ -23,6 +23,13 @@ jobs:
           coverage: none
           tools: composer:v2
 
+      # Branch dependencies install from GitHub; the API's anonymous rate
+      # limit is too small to rely on.
+      - name: Configure Composer authentication
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: composer config --global --auth github-oauth.github.com "$GH_TOKEN"
+
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
@@ -49,6 +56,13 @@ jobs:
           coverage: none
           tools: composer:v2
 
+      # Branch dependencies install from GitHub; the API's anonymous rate
+      # limit is too small to rely on.
+      - name: Configure Composer authentication
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: composer config --global --auth github-oauth.github.com "$GH_TOKEN"
+
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
@@ -74,6 +88,13 @@ jobs:
 
       - name: Install Firefox
         uses: browser-actions/setup-firefox@0bc507ddf224827e3b1af68e014d5e42ab93e795 # v1.7.2
+
+      # Branch dependencies install from GitHub; the API's anonymous rate
+      # limit is too small to rely on.
+      - name: Configure Composer authentication
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: composer config --global --auth github-oauth.github.com "$GH_TOKEN"
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
