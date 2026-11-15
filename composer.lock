@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cda2add6397422fb1a2eb5b9207f1575",
+    "content-hash": "efb8a48d96d38718e1f5e0c3f8703dec",
     "packages": [
         {
             "name": "brick/math",
@@ -3273,6 +3273,82 @@
             "time": "2026-11-14T23:23:20+00:00"
         },
         {
+            "name": "smarty/smarty",
+            "version": "v5.8.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smarty-php/smarty.git",
+                "reference": "0ae663525dcbc9e996feb2a867e43bc85f960938"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/0ae663525dcbc9e996feb2a867e43bc85f960938",
+                "reference": "0ae663525dcbc9e996feb2a867e43bc85f960938",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.27"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5 || ^7.5",
+                "smarty/smarty-lexer": "^4.0.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Smarty\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Monte Ohrt",
+                    "email": "monte@ohrt.com"
+                },
+                {
+                    "name": "Uwe Tews",
+                    "email": "uwe.tews@googlemail.com"
+                },
+                {
+                    "name": "Rodney Rehm",
+                    "email": "rodney.rehm@medialize.de"
+                },
+                {
+                    "name": "Simon Wisselink",
+                    "homepage": "https://www.iwink.nl/"
+                }
+            ],
+            "description": "Smarty - the compiling PHP template engine",
+            "homepage": "https://smarty-php.github.io/smarty/",
+            "keywords": [
+                "templating"
+            ],
+            "support": {
+                "forum": "https://github.com/smarty-php/smarty/discussions",
+                "issues": "https://github.com/smarty-php/smarty/issues",
+                "source": "https://github.com/smarty-php/smarty/tree/v5.8.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/wisskid",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-04T21:31:42+00:00"
+        },
+        {
             "name": "symfony/clock",
             "version": "v8.1.9",
             "source": {
@@ -6127,6 +6203,265 @@
                 }
             ],
             "time": "2026-04-26T05:33:54+00:00"
+        },
+        {
+            "name": "vusys/laravel-bitemporal",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vusys/laravel-bitemporal",
+                "reference": "ab5d1826d447e6423d4aa38af17ea3242e91f35b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vusys/laravel-bitemporal/zipball/ab5d1826d447e6423d4aa38af17ea3242e91f35b",
+                "reference": "ab5d1826d447e6423d4aa38af17ea3242e91f35b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^11.0|^12.0|^13.0",
+                "illuminate/events": "^11.0|^12.0|^13.0",
+                "illuminate/support": "^11.0|^12.0|^13.0",
+                "nesbot/carbon": "^3.0",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "driftingly/rector-laravel": "^2.0",
+                "infection/infection": "^0.29 || ^0.34",
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.0",
+                "orchestra/testbench": "^9.0|^10.0|^11.0",
+                "phpunit/phpunit": "^11.0|^12.0",
+                "rector/rector": "^2.0",
+                "vusys/laravel-runabout": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vusys\\Bitemporal\\BitemporalServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vusys\\Bitemporal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Effective-dated and bitemporal models for Laravel 11+.",
+            "homepage": "https://vusys.github.io/laravel-bitemporal/",
+            "support": {
+                "docs": "https://vusys.github.io/laravel-bitemporal/",
+                "issues": "https://github.com/Vusys/laravel-bitemporal/issues",
+                "source": "https://github.com/Vusys/laravel-bitemporal"
+            },
+            "time": "2026-07-18T20:48:27+00:00"
+        },
+        {
+            "name": "vusys/laravel-nestedset",
+            "version": "v0.24.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vusys/laravel-nestedset",
+                "reference": "ed740b2985a73ea93d865878d8f5ada725efa8ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vusys/laravel-nestedset/zipball/ed740b2985a73ea93d865878d8f5ada725efa8ae",
+                "reference": "ed740b2985a73ea93d865878d8f5ada725efa8ae",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^11.0|^12.0|^13.0",
+                "illuminate/events": "^11.0|^12.0|^13.0",
+                "illuminate/support": "^11.0|^12.0|^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "brianium/paratest": "^7.0",
+                "driftingly/rector-laravel": "^2.0",
+                "infection/infection": "^0.33 || ^0.34",
+                "larastan/larastan": "^2.9|^3.0",
+                "laravel/pint": "^1.0",
+                "orchestra/testbench": "^9.0|^10.0|^11.0",
+                "phpunit/phpunit": "^11.0|^12.0",
+                "rector/rector": "^2.0",
+                "vusys/laravel-runabout": "dev-master"
+            },
+            "suggest": {
+                "illuminate/bus": "Required by Model::queueFixAggregates() — FixAggregatesJob uses Bus\\Queueable and Foundation\\Bus\\Dispatchable.",
+                "illuminate/queue": "Required by Model::queueFixAggregates() — FixAggregatesJob is dispatched onto a queue."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vusys\\NestedSet\\NestedSetServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vusys\\NestedSet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan",
+                    "email": "bryan@vuii.co.uk",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Nested set model implementation for Laravel 11+.",
+            "keywords": [
+                "MPTT",
+                "adjacency-list",
+                "aggregates",
+                "eloquent",
+                "hierarchy",
+                "laravel",
+                "nested set model",
+                "nested-set",
+                "tree"
+            ],
+            "support": {
+                "docs": "https://vusys.github.io/laravel-nestedset/",
+                "issues": "https://github.com/vusys/laravel-nestedset/issues",
+                "source": "https://github.com/vusys/laravel-nestedset"
+            },
+            "time": "2026-07-11T02:51:13+00:00"
+        },
+        {
+            "name": "vusys/laravel-quantum-slipstream-drive",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive",
+                "reference": "b6aa2c235f192754fa5436a31af0e61a0a800424"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/b6aa2c235f192754fa5436a31af0e61a0a800424",
+                "reference": "b6aa2c235f192754fa5436a31af0e61a0a800424",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^11.0|^12.0|^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "driftingly/rector-laravel": "^2.0",
+                "infection/infection": "^0.29 || ^0.33 || ^0.34",
+                "larastan/larastan": "^2.9|^3.0",
+                "laravel/pint": "^1.0",
+                "orchestra/testbench": "^9.0|^10.0|^11.0",
+                "phpunit/phpunit": "^11.0|^12.0|^13.0",
+                "rector/rector": "^2.0",
+                "vusys/laravel-runabout": "dev-master"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vusys\\QuantumSlipstreamDrive\\QuantumSlipstreamDriveServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vusys\\QuantumSlipstreamDrive\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel package.",
+            "time": "2026-08-24T05:39:46+00:00"
+        },
+        {
+            "name": "vusys/laravel-smarty",
+            "version": "v0.22.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vusys/laravel-smarty",
+                "reference": "549f35e57c455343e8f9a1644e7a5ca7b90f5bbf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vusys/laravel-smarty/zipball/549f35e57c455343e8f9a1644e7a5ca7b90f5bbf",
+                "reference": "549f35e57c455343e8f9a1644e7a5ca7b90f5bbf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/view": "^10.0|^11.0|^12.0|^13.0",
+                "php": "^8.1",
+                "smarty/smarty": "^5.4"
+            },
+            "require-dev": {
+                "driftingly/rector-laravel": "^2.0",
+                "infection/infection": "^0.33 || ^0.34",
+                "larastan/larastan": "^2.9 || ^3.0",
+                "laravel/pennant": "^1.0|^2.0",
+                "laravel/pint": "^1.0",
+                "orchestra/testbench": "^8.1|^9.0|^10.0|^11.0",
+                "phpunit/phpunit": "^10.5.32|^11.5|^12.0",
+                "rector/rector": "^2.0"
+            },
+            "suggest": {
+                "laravel/pennant": "Required for the {feature} block and the feature_active modifier"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vusys\\LaravelSmarty\\SmartyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vusys\\LaravelSmarty\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan",
+                    "email": "bryan@vuii.co.uk"
+                }
+            ],
+            "description": "Replace Blade with Smarty as the default Laravel template engine.",
+            "homepage": "https://vusys.github.io/laravel-smarty/",
+            "keywords": [
+                "blade",
+                "laravel",
+                "smarty",
+                "template",
+                "template-engine",
+                "templating",
+                "view"
+            ],
+            "support": {
+                "docs": "https://vusys.github.io/laravel-smarty/",
+                "issues": "https://github.com/Vusys/laravel-smarty/issues",
+                "source": "https://github.com/Vusys/laravel-smarty"
+            },
+            "time": "2026-07-07T22:38:41+00:00"
         }
     ],
     "packages-dev": [
@@ -8453,11 +8788,135 @@
                 }
             ],
             "time": "2025-12-08T11:19:18+00:00"
+        },
+        {
+            "name": "vusys/laravel-runabout",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vusys/laravel-runabout.git",
+                "reference": "b0a9590ff4b94ddb63fbaba8f6c0f116c4c17e31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vusys/laravel-runabout/zipball/b0a9590ff4b94ddb63fbaba8f6c0f116c4c17e31",
+                "reference": "b0a9590ff4b94ddb63fbaba8f6c0f116c4c17e31",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^11.0|^12.0|^13.0",
+                "illuminate/support": "^11.0|^12.0|^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "driftingly/rector-laravel": "^2.0",
+                "infection/infection": "^0.33 || ^0.34 || ^0.35",
+                "larastan/larastan": "^2.9|^3.0",
+                "laravel/pint": "^1.0",
+                "orchestra/testbench": "^9.0|^10.0|^11.0",
+                "phpunit/phpunit": "^11.0|^12.0|^13.0",
+                "rector/rector": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vusys\\Runabout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Journey testing for Laravel: run the steps of a user journey in seeded, shuffled orders and assert invariants along the way.",
+            "support": {
+                "issues": "https://github.com/Vusys/laravel-runabout/issues",
+                "source": "https://github.com/Vusys/laravel-runabout/tree/v1.4.0"
+            },
+            "time": "2026-10-19T20:08:47+00:00"
+        },
+        {
+            "name": "vusys/tetryon",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vusys/tetryon",
+                "reference": "1840414b4f0f5da2dcf61cd0bde90c91c6511531"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/1840414b4f0f5da2dcf61cd0bde90c91c6511531",
+                "reference": "1840414b4f0f5da2dcf61cd0bde90c91c6511531",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^8.4",
+                "psr/log": "^3.0"
+            },
+            "require-dev": {
+                "infection/infection": "^0.29 || ^0.33 || ^0.34",
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.18",
+                "orchestra/testbench": "^9.0 || ^10.0 || ^11.0",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^12.0 || ^13.0",
+                "rector/rector": "^2.0"
+            },
+            "suggest": {
+                "laravel/framework": "For the Laravel integration: service provider, config publishing, tetryon:* artisan commands, and Laravel\\BrowserTestCase."
+            },
+            "bin": [
+                "bin/tetryon"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vusys\\Tetryon\\Laravel\\TetryonServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vusys\\Tetryon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan",
+                    "email": "bryan@vuii.co.uk",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "PHP-native browser testing for PHPUnit. Firefox-first, WebDriver BiDi, no Node, no Selenium, no ChromeDriver.",
+            "keywords": [
+                "bidi",
+                "browser-testing",
+                "e2e",
+                "end-to-end",
+                "firefox",
+                "laravel",
+                "phpunit",
+                "testing",
+                "webdriver"
+            ],
+            "support": {
+                "issues": "https://github.com/Vusys/tetryon/issues",
+                "source": "https://github.com/Vusys/tetryon"
+            },
+            "time": "2026-08-09T17:48:28+00:00"
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {},
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "vusys/laravel-quantum-slipstream-drive": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
