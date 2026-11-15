@@ -6345,12 +6345,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive.git",
-                "reference": "4f84da409c6fcf2dae9001f42726a56c91ca7606"
+                "reference": "9987982fe97f015fd43a330071ea30c79cba3a67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/4f84da409c6fcf2dae9001f42726a56c91ca7606",
-                "reference": "4f84da409c6fcf2dae9001f42726a56c91ca7606",
+                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/9987982fe97f015fd43a330071ea30c79cba3a67",
+                "reference": "9987982fe97f015fd43a330071ea30c79cba3a67",
                 "shasum": ""
             },
             "require": {
@@ -6390,7 +6390,7 @@
                 "issues": "https://github.com/Vusys/laravel-quantum-slipstream-drive/issues",
                 "source": "https://github.com/Vusys/laravel-quantum-slipstream-drive/tree/master"
             },
-            "time": "2026-11-15T20:58:15+00:00"
+            "time": "2026-11-15T21:50:14+00:00"
         },
         {
             "name": "vusys/laravel-smarty",
