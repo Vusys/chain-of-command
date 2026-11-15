@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChartController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/chart');
+Route::get('/chart', [ChartController::class, 'show'])->name('chart');

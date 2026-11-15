@@ -39,9 +39,33 @@ final class Staffing
         return $person;
     }
 
+    /**
+     * Refused when the new manager reports, however indirectly, to the
+     * person moving: the chain of command would loop.
+     */
     public function transfer(Person $person, Department $department, ?Person $manager, CarbonInterface|string $from): void
     {
+        if ($manager !== null && $this->wouldLoop($person, $manager, $from)) {
+            throw new DomainException("{$manager->name} reports to {$person->name} on {$from}.");
+        }
+
         $this->change($person, $from, ['department_id' => $department->getKey(), 'manager_id' => $manager?->getKey()]);
+    }
+
+    public function wouldLoop(Person $person, Person $manager, CarbonInterface|string $on): bool
+    {
+        $managerOf = Assignment::query()->validAt($on)->currentKnowledge()->excludeRetractions()
+            ->pluck('manager_id', 'person_id')->all();
+
+        $seen = [];
+        for ($at = $manager->getKey(); $at !== null && ! isset($seen[$at]); $at = $managerOf[$at] ?? null) {
+            if ($at === $person->getKey()) {
+                return true;
+            }
+            $seen[$at] = true;
+        }
+
+        return false;
     }
 
     public function promote(Person $person, string $title, int $salary, CarbonInterface|string $from): void
@@ -68,9 +92,23 @@ final class Staffing
         );
     }
 
+    /**
+     * Refused while anyone still reports to them: move the reports first,
+     * or they would be left reporting to someone who has gone.
+     */
     public function leave(Person $person, CarbonInterface|string $on): void
     {
+        if ($this->reports($person, $on) > 0) {
+            throw new DomainException("{$person->name} still has reports on {$on}; move them first.");
+        }
+
         $person->assignments()->endAt($on);
+    }
+
+    public function reports(Person $person, CarbonInterface|string $on): int
+    {
+        return Assignment::query()->validAt($on)->currentKnowledge()->excludeRetractions()
+            ->where('manager_id', $person->getKey())->count();
     }
 
     /** @param  array<string, mixed>  $values */

@@ -26,6 +26,12 @@ class Assignment extends Model
     /** The value tuple every write must pass in full. */
     public const array VALUES = ['department_id', 'manager_id', 'title', 'salary'];
 
+    /** @return BelongsTo<Person, $this> */
+    public function person(): BelongsTo
+    {
+        return $this->belongsTo(Person::class);
+    }
+
     /** @return BelongsTo<Department, $this> */
     public function department(): BelongsTo
     {
