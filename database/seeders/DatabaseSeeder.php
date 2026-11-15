@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Department;
+use App\Models\Person;
 use App\Org\Staffing;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Seeder;
@@ -23,16 +26,16 @@ class DatabaseSeeder extends Seeder
         $support = $this->department('Support', $operations);
         $finance = $this->department('Finance', $company);
 
-        $ceo = $this->on('2025-01-01', fn () => $staffing->hire('Ada Okafor', 'ada@kestrel.test', $company, null, 'Chief Executive', 180000, '2025-01-01'));
-        $cto = $this->on('2025-01-01', fn () => $staffing->hire('Bram Visser', 'bram@kestrel.test', $engineering, $ceo, 'Head of Engineering', 140000, '2025-01-01'));
-        $ops = $this->on('2025-01-01', fn () => $staffing->hire('Chen Wei', 'chen@kestrel.test', $operations, $ceo, 'Head of Operations', 120000, '2025-01-01'));
-        $cfo = $this->on('2025-02-01', fn () => $staffing->hire('Dana Ruiz', 'dana@kestrel.test', $finance, $ceo, 'Finance Lead', 115000, '2025-02-01'));
-        $lead = $this->on('2025-01-01', fn () => $staffing->hire('Eli Novak', 'eli@kestrel.test', $platform, $cto, 'Platform Lead', 105000, '2025-01-01'));
-        $dev = $this->on('2025-03-01', fn () => $staffing->hire('Farah Haddad', 'farah@kestrel.test', $platform, $lead, 'Engineer', 82000, '2025-03-01'));
-        $pm = $this->on('2025-01-01', fn () => $staffing->hire('Gus Lindqvist', 'gus@kestrel.test', $product, $cto, 'Product Manager', 90000, '2025-01-01'));
-        $designer = $this->on('2025-04-01', fn () => $staffing->hire('Hana Sato', 'hana@kestrel.test', $product, $pm, 'Designer', 78000, '2025-04-01'));
-        $agent = $this->on('2025-01-01', fn () => $staffing->hire('Ivo Petrov', 'ivo@kestrel.test', $support, $ops, 'Support Agent', 52000, '2025-01-01'));
-        $this->on('2025-06-01', fn () => $staffing->hire('Jun Park', 'jun@kestrel.test', $support, $ops, 'Support Agent', 52000, '2025-06-01'));
+        $ceo = $this->on('2025-01-01', fn (): Person => $staffing->hire('Ada Okafor', 'ada@kestrel.test', $company, null, 'Chief Executive', 180000, '2025-01-01'));
+        $cto = $this->on('2025-01-01', fn (): Person => $staffing->hire('Bram Visser', 'bram@kestrel.test', $engineering, $ceo, 'Head of Engineering', 140000, '2025-01-01'));
+        $ops = $this->on('2025-01-01', fn (): Person => $staffing->hire('Chen Wei', 'chen@kestrel.test', $operations, $ceo, 'Head of Operations', 120000, '2025-01-01'));
+        $cfo = $this->on('2025-02-01', fn (): Person => $staffing->hire('Dana Ruiz', 'dana@kestrel.test', $finance, $ceo, 'Finance Lead', 115000, '2025-02-01'));
+        $lead = $this->on('2025-01-01', fn (): Person => $staffing->hire('Eli Novak', 'eli@kestrel.test', $platform, $cto, 'Platform Lead', 105000, '2025-01-01'));
+        $dev = $this->on('2025-03-01', fn (): Person => $staffing->hire('Farah Haddad', 'farah@kestrel.test', $platform, $lead, 'Engineer', 82000, '2025-03-01'));
+        $pm = $this->on('2025-01-01', fn (): Person => $staffing->hire('Gus Lindqvist', 'gus@kestrel.test', $product, $cto, 'Product Manager', 90000, '2025-01-01'));
+        $designer = $this->on('2025-04-01', fn (): Person => $staffing->hire('Hana Sato', 'hana@kestrel.test', $product, $pm, 'Designer', 78000, '2025-04-01'));
+        $agent = $this->on('2025-01-01', fn (): Person => $staffing->hire('Ivo Petrov', 'ivo@kestrel.test', $support, $ops, 'Support Agent', 52000, '2025-01-01'));
+        $this->on('2025-06-01', fn (): Person => $staffing->hire('Jun Park', 'jun@kestrel.test', $support, $ops, 'Support Agent', 52000, '2025-06-01'));
 
         // Dana's starting salary was keyed wrong; she was hired on 118,000.
         // Found and fixed months later; the original belief stays on record.
@@ -71,7 +74,7 @@ class DatabaseSeeder extends Seeder
     private function department(string $name, ?Department $parent = null): Department
     {
         $department = new Department(['name' => $name]);
-        $parent === null ? $department->saveAsRoot() : $department->appendToNode($parent->refresh())->save();
+        $parent instanceof Department ? $department->appendToNode($parent->refresh())->save() : $department->saveAsRoot();
 
         return $department;
     }

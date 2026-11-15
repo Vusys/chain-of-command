@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,13 +19,21 @@ class Person extends Model
 
     protected $fillable = ['name', 'email'];
 
-    /** The whole timeline — the relation every write goes through. */
+    /**
+     * The whole timeline — the relation every write goes through.
+     *
+     * @return BitemporalMany<Assignment, $this>
+     */
     public function assignments(): BitemporalMany
     {
         return $this->bitemporalMany(Assignment::class);
     }
 
-    /** The one assignment in force — pin it with validAt() or a lens. */
+    /**
+     * The one assignment in force — pin it with validAt() or a lens.
+     *
+     * @return BitemporalOne<Assignment, $this>
+     */
     public function assignment(): BitemporalOne
     {
         return $this->bitemporalOne(Assignment::class);

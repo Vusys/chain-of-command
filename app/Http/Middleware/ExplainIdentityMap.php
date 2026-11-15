@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
+use Vusys\QuantumSlipstreamDrive\Explanation;
 use Vusys\QuantumSlipstreamDrive\IdentityMap;
 
 /**
@@ -28,7 +31,7 @@ class ExplainIdentityMap
             $response = $next($request);
         });
 
-        $fromMemory = count(array_filter($explanations, fn ($explanation): bool => ! $explanation->sqlExecuted));
+        $fromMemory = count(array_filter($explanations, fn (Explanation $explanation): bool => ! $explanation->sqlExecuted));
         $content = $response->getContent();
         if (is_string($content) && str_contains($content, self::MARKER)) {
             $response->setContent(str_replace(

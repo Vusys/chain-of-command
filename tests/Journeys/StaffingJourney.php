@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Journeys;
 
 use App\Models\Assignment;
@@ -8,6 +10,8 @@ use App\Models\Person;
 use App\Org\Staffing;
 use Carbon\CarbonImmutable;
 use DomainException;
+use Illuminate\Support\Collection;
+use LogicException;
 use PHPUnit\Framework\Assert;
 use Vusys\Runabout\Context;
 use Vusys\Runabout\Invariant;
@@ -51,8 +55,8 @@ final class StaffingJourney extends Journey
                     $staffing->hire(
                         "Person {$n}",
                         "person{$n}@example.test",
-                        $ctx->pick(Department::query()->get()->all()),
-                        $ctx->pick($this->employed()->all()),
+                        $this->pickFrom($ctx, Department::query()->get()),
+                        $this->pickFrom($ctx, $this->employed()),
                         'Engineer',
                         $ctx->pick([50000, 60000, 70000]),
                         $this->today(),
@@ -64,12 +68,11 @@ final class StaffingJourney extends Journey
                 ->repeatable(max: 3)
                 ->when(fn () => $this->staff()->isNotEmpty())
                 ->act(function (Context $ctx) use ($staffing): void {
-                    $person = $ctx->pick($this->staff()->all());
-                    $managers = $this->employed()->reject(fn (Person $p) => $p->is($person))->values()->all();
-                    $manager = $ctx->pick($managers);
+                    $person = $this->pickFrom($ctx, $this->staff());
+                    $manager = $this->pickFrom($ctx, $this->employed()->reject(fn (Person $p): bool => $p->is($person)));
                     $ctx->remember('would loop', $staffing->wouldLoop($person, $manager, $this->today()));
                     try {
-                        $staffing->transfer($person, $ctx->pick(Department::query()->get()->all()), $manager, $this->today());
+                        $staffing->transfer($person, $this->pickFrom($ctx, Department::query()->get()), $manager, $this->today());
                         $ctx->remember('transfer refused', false);
                     } catch (DomainException) {
                         $ctx->remember('transfer refused', true);
@@ -82,7 +85,7 @@ final class StaffingJourney extends Journey
                 ->repeatable(max: 3)
                 ->when(fn () => $this->staff()->isNotEmpty())
                 ->act(function (Context $ctx) use ($staffing): void {
-                    $staffing->promote($ctx->pick($this->staff()->all()), 'Senior Engineer', $ctx->pick([80000, 90000]), $this->today());
+                    $staffing->promote($this->pickFrom($ctx, $this->staff()), 'Senior Engineer', $ctx->pick([80000, 90000]), $this->today());
                 }),
 
             Step::make('correct a past salary')
@@ -90,14 +93,15 @@ final class StaffingJourney extends Journey
                 ->repeatable(max: 2)
                 ->when(fn () => $this->staff()->isNotEmpty())
                 ->act(function (Context $ctx) use ($staffing): void {
-                    $person = $ctx->pick($this->staff()->all());
-                    $segment = $ctx->pick($person->assignments()->currentKnowledge()->excludeRetractions()->get()->all());
-                    $ctx->remember('corrected', [$person->id, $segment->valid_from, $salary = $segment->salary + 1000]);
-                    $staffing->correct($person, ['salary' => $salary], $segment->valid_from, $segment->valid_to);
+                    $person = $this->pickFrom($ctx, $this->staff());
+                    $segment = $this->pickFrom($ctx, Assignment::query()->whereTemporalEntity($person)->currentKnowledge()->excludeRetractions()->get());
+                    $ctx->remember('corrected', $segment->id);
+                    $staffing->correct($person, ['salary' => ($segment->salary ?? 0) + 1000], $segment->valid_from, $segment->valid_to);
                 })
                 ->assert(function (Context $ctx): void {
-                    [$id, $from, $salary] = $ctx->get('corrected');
-                    Assert::assertSame($salary, Person::query()->findOrFail($id)->assignments()->validAt($from)->currentKnowledge()->sole()->salary);
+                    $before = Assignment::query()->findOrFail($ctx->integer('corrected'));
+                    $now = Assignment::query()->where('person_id', $before->person_id)->validAt($before->valid_from)->currentKnowledge()->sole();
+                    Assert::assertSame(($before->salary ?? 0) + 1000, $now->salary);
                 }),
 
             Step::make('someone leaves')
@@ -105,7 +109,7 @@ final class StaffingJourney extends Journey
                 ->repeatable(max: 2)
                 ->when(fn () => $this->staff()->isNotEmpty())
                 ->act(function (Context $ctx) use ($staffing): void {
-                    $person = $ctx->pick($this->staff()->all());
+                    $person = $this->pickFrom($ctx, $this->staff());
                     $ctx->remember('had reports', $staffing->reports($person, $this->today()) > 0);
                     $ctx->remember('leaver', $person->id);
                     try {
@@ -132,16 +136,19 @@ final class StaffingJourney extends Journey
             }),
 
             Invariant::make('every manager is employed while their reports are', function (): void {
-                $employed = $this->employed()->modelKeys();
+                $employed = $this->employed()->pluck('id')->all();
                 foreach ($this->current() as $assignment) {
                     if ($assignment->manager_id !== null) {
-                        Assert::assertContains($assignment->manager_id, $employed, "{$assignment->person->name} reports to someone who has left.");
+                        Assert::assertContains($assignment->manager_id, $employed, "Person {$assignment->person_id} reports to someone who has left.");
                     }
                 }
             }),
 
             Invariant::make('every chain of command ends at the top', function (): void {
-                $managerOf = $this->current()->pluck('manager_id', 'person_id')->all();
+                $managerOf = [];
+                foreach ($this->current() as $assignment) {
+                    $managerOf[$assignment->person_id] = $assignment->manager_id;
+                }
                 foreach (array_keys($managerOf) as $start) {
                     $seen = [];
                     for ($at = $start; $at !== null; $at = $managerOf[$at] ?? null) {
@@ -163,26 +170,48 @@ final class StaffingJourney extends Journey
         ];
     }
 
+    /**
+     * A seeded draw from a collection, which pick() wants as a non-empty list.
+     *
+     * @template T
+     *
+     * @param  Collection<array-key, T>  $items
+     * @return T
+     */
+    private function pickFrom(Context $ctx, Collection $items): mixed
+    {
+        $list = array_values($items->all());
+        if ($list === []) {
+            throw new LogicException('Nothing to pick from; the step should not have been eligible.');
+        }
+
+        return $ctx->pick($list);
+    }
+
     private function today(): CarbonImmutable
     {
         return CarbonImmutable::now()->startOfDay();
     }
 
-    /** @return \Illuminate\Support\Collection<int, Assignment> */
-    private function current()
+    /** @return Collection<int, Assignment> */
+    private function current(): Collection
     {
-        return Assignment::query()->validAt($this->today())->currentKnowledge()->excludeRetractions()->get();
+        return Assignment::query()->validAt($this->today())->currentKnowledge()->excludeRetractions()->get()->toBase();
     }
 
-    /** @return \Illuminate\Support\Collection<int, Person> */
-    private function employed()
+    /** @return Collection<int, Person> */
+    private function employed(): Collection
     {
-        return $this->current()->map(fn (Assignment $assignment) => $assignment->person)->values();
+        return $this->current()->map(fn (Assignment $assignment): ?Person => $assignment->person)->filter()->values();
     }
 
-    /** Everyone employed except the founder. */
-    private function staff()
+    /**
+     * Everyone employed except the founder.
+     *
+     * @return Collection<int, Person>
+     */
+    private function staff(): Collection
     {
-        return $this->employed()->reject(fn (Person $person) => $person->email === 'founder@example.test')->values();
+        return $this->employed()->reject(fn (Person $person): bool => $person->email === 'founder@example.test')->values();
     }
 }

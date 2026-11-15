@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Org;
 
 use App\Models\Assignment;
@@ -45,7 +47,7 @@ final class Staffing
      */
     public function transfer(Person $person, Department $department, ?Person $manager, CarbonInterface|string $from): void
     {
-        if ($manager !== null && $this->wouldLoop($person, $manager, $from)) {
+        if ($manager instanceof Person && $this->wouldLoop($person, $manager, $from)) {
             throw new DomainException("{$manager->name} reports to {$person->name} on {$from}.");
         }
 
@@ -54,12 +56,14 @@ final class Staffing
 
     public function wouldLoop(Person $person, Person $manager, CarbonInterface|string $on): bool
     {
-        $managerOf = Assignment::query()->validAt($on)->currentKnowledge()->excludeRetractions()
-            ->pluck('manager_id', 'person_id')->all();
+        $managerOf = [];
+        foreach (Assignment::query()->validAt($on)->currentKnowledge()->excludeRetractions()->get() as $assignment) {
+            $managerOf[$assignment->person_id] = $assignment->manager_id;
+        }
 
         $seen = [];
-        for ($at = $manager->getKey(); $at !== null && ! isset($seen[$at]); $at = $managerOf[$at] ?? null) {
-            if ($at === $person->getKey()) {
+        for ($at = $manager->id; $at !== null && ! isset($seen[$at]); $at = $managerOf[$at] ?? null) {
+            if ($at === $person->id) {
                 return true;
             }
             $seen[$at] = true;
@@ -122,7 +126,7 @@ final class Staffing
 
     private function current(Person $person, CarbonInterface|string $at): Assignment
     {
-        return $person->assignments()->validAt($at)->currentKnowledge()->excludeRetractions()->first()
+        return Assignment::query()->whereTemporalEntity($person)->validAt($at)->currentKnowledge()->excludeRetractions()->first()
             ?? throw new DomainException("{$person->name} has no assignment on {$at}.");
     }
 }

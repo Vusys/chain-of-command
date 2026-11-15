@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
@@ -19,16 +21,13 @@ class ChartController extends Controller
         $on = CarbonImmutable::parse($request->query('on') ?: 'today');
         $known = $request->query('known') ? CarbonImmutable::parse($request->query('known'))->endOfDay() : null;
 
-        $assignments = Assignment::query()
-            ->validAt($on)
-            ->when($known, fn ($query) => $query->knownAt($known), fn ($query) => $query->currentKnowledge())
-            ->excludeRetractions()
-            ->get();
+        $query = Assignment::query()->validAt($on)->excludeRetractions();
+        $assignments = ($known instanceof CarbonImmutable ? $query->knownAt($known) : $query->currentKnowledge())->get();
 
         // Plain lazy loads, not with(): every person and manager is resolved
         // through slipstream's identity map, so each is fetched once.
         $byDepartment = $assignments
-            ->sortBy(fn (Assignment $assignment) => $assignment->person->name)
+            ->sortBy(fn (Assignment $assignment): string => $assignment->person->name ?? '')
             ->groupBy('department_id');
 
         return view('chart', [
