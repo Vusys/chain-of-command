@@ -10585,16 +10585,16 @@
         },
         {
             "name": "vusys/tetryon",
-            "version": "v0.7.0",
+            "version": "v0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/tetryon.git",
-                "reference": "58df147ca5564b040307666f2a73a21a5fa04576"
+                "reference": "059ead7adb1e2dd62a192b0c4614922b4103ed47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/58df147ca5564b040307666f2a73a21a5fa04576",
-                "reference": "58df147ca5564b040307666f2a73a21a5fa04576",
+                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/059ead7adb1e2dd62a192b0c4614922b4103ed47",
+                "reference": "059ead7adb1e2dd62a192b0c4614922b4103ed47",
                 "shasum": ""
             },
             "require": {
@@ -10659,7 +10659,7 @@
                 "issues": "https://github.com/Vusys/tetryon/issues",
                 "source": "https://github.com/Vusys/tetryon"
             },
-            "time": "2026-11-15T23:01:33+00:00"
+            "time": "2026-11-16T01:16:25+00:00"
         },
         {
             "name": "vusys/zefram",
