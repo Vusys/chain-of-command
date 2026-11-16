@@ -105,16 +105,12 @@ jobs:
           php artisan key:generate
           sed -i 's#^APP_URL=.*#APP_URL=http://127.0.0.1:8000#' .env
 
-      - name: Serve the app
-        run: |
-          bin/browser-serve.sh > serve.log 2>&1 &
-          for _ in $(seq 1 30); do curl -sf http://127.0.0.1:8000/up > /dev/null && exit 0; sleep 1; done
-          cat serve.log
-          exit 1
-
-      - name: Run browser tests
-        run: vendor/bin/phpunit -c phpunit.browser.xml
+      # Each paratest worker gets its own Tetryon-managed server and SQLite
+      # database (tetryon#74), so there's no shared server to start here.
+      - name: Run browser tests (3 workers, managed servers)
+        run: php artisan test --parallel --processes=3 -c phpunit.browser.xml
         env:
+          TETRYON_MANAGED_SERVER: true
           TETRYON_SUITE_REPORT: 1
 
       # The recorded report on every run, not only failures: it is the demo.

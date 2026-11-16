@@ -30,4 +30,26 @@ return [
     'selectors' => [
         'test_attributes' => ['data-testid', 'data-test', 'data-cy'],
     ],
+
+    // Parallel runs: one server per worker (TETRYON_MANAGED_SERVER=true with
+    // `php artisan test --parallel`). Same shape as bin/browser-serve.sh, on the
+    // worker's own database, which Laravel names "<name>_test_<token>".
+    'server' => [
+        'managed' => env('TETRYON_MANAGED_SERVER', false),
+        'command' => 'php -d opcache.enable=0 -S {host}:{port} ../vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php',
+        'host' => '127.0.0.1',
+        'base_port' => 8100,
+        'ready_path' => '/up',
+        'ready_timeout' => 15000,
+        'env' => [
+            'APP_ENV' => 'local',
+            'APP_URL' => 'http://{host}:{port}',
+            'SESSION_DRIVER' => 'file',
+            'CACHE_STORE' => 'file',
+            'QUEUE_CONNECTION' => 'sync',
+            'DB_CONNECTION' => 'sqlite',
+            'DB_DATABASE' => database_path('tetryon.sqlite').'_test_{token}',
+        ],
+        'working_directory' => public_path(),
+    ],
 ];
