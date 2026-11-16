@@ -10667,12 +10667,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/zefram.git",
-                "reference": "a2d0e16d6a7f3adda76c2f6abee8c8ccb43690d0"
+                "reference": "9c535bed9deeb79772df62791aee6c43d4fc835a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/zefram/zipball/a2d0e16d6a7f3adda76c2f6abee8c8ccb43690d0",
-                "reference": "a2d0e16d6a7f3adda76c2f6abee8c8ccb43690d0",
+                "url": "https://api.github.com/repos/Vusys/zefram/zipball/9c535bed9deeb79772df62791aee6c43d4fc835a",
+                "reference": "9c535bed9deeb79772df62791aee6c43d4fc835a",
                 "shasum": ""
             },
             "require": {
@@ -10772,7 +10772,7 @@
                 "issues": "https://github.com/Vusys/zefram/issues",
                 "source": "https://github.com/Vusys/zefram"
             },
-            "time": "2026-09-07T05:17:28+00:00"
+            "time": "2026-11-16T18:59:48+00:00"
         },
         {
             "name": "webmozart/assert",

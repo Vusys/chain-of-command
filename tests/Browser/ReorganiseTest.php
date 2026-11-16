@@ -6,7 +6,6 @@ namespace Tests\Browser;
 
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\DatabaseTruncation;
-use Vusys\Tetryon\Laravel\BrowserTestCase;
 use Vusys\Tetryon\PHPUnit\Browser;
 use Vusys\Tetryon\PHPUnit\Record;
 

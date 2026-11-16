@@ -18,6 +18,13 @@
             <directory>tests/Browser</directory>
         </testsuite>
     </testsuites>
+    <extensions>
+        <!-- Never skips these tests, whose app code runs in the served process (zefram#80). -->
+        <bootstrap class="Vusys\Zefram\PhpUnit\ZeframExtension">
+            <parameter name="enabled" value="true"/>
+            <parameter name="cacheDirectory" value=".zefram"/>
+        </bootstrap>
+    </extensions>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
