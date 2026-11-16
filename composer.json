@@ -31,8 +31,8 @@
         "phpunit/phpunit": "^12.5.12",
         "rector/rector": "^2.0",
         "vusys/laravel-runabout": "^1.4",
-        "vusys/tetryon": "dev-feat/74-managed-server as 0.7.99",
-        "vusys/zefram": "dev-main"
+        "vusys/tetryon": "^0.8",
+        "vusys/zefram": "^0.1"
     },
     "autoload": {
         "psr-4": {
@@ -116,17 +116,5 @@
         ]
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "name": "zefram",
-            "type": "vcs",
-            "url": "https://github.com/Vusys/zefram.git"
-        },
-        {
-            "name": "tetryon",
-            "type": "vcs",
-            "url": "https://github.com/Vusys/tetryon.git"
-        }
-    ]
+    "prefer-stable": true
 }

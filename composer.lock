@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "558bf5514bf8e35a8a5de0b0822a39dc",
+    "content-hash": "a9c7794970828f842bf9417a1fb541ea",
     "packages": [
         {
             "name": "brick/math",
@@ -10738,16 +10738,16 @@
         },
         {
             "name": "vusys/tetryon",
-            "version": "dev-feat/74-managed-server",
+            "version": "v0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/tetryon.git",
-                "reference": "019a80aba87ecf88ecfed441782f1eb7666241a5"
+                "reference": "85ba6d4a399ce6c0e1e7c185121c758c8b805244"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/019a80aba87ecf88ecfed441782f1eb7666241a5",
-                "reference": "019a80aba87ecf88ecfed441782f1eb7666241a5",
+                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/85ba6d4a399ce6c0e1e7c185121c758c8b805244",
+                "reference": "85ba6d4a399ce6c0e1e7c185121c758c8b805244",
                 "shasum": ""
             },
             "require": {
@@ -10785,57 +10785,7 @@
                     "Vusys\\Tetryon\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Vusys\\Tetryon\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "analyse": [
-                    "phpstan analyse"
-                ],
-                "analyze": [
-                    "@analyse"
-                ],
-                "rector": [
-                    "rector process"
-                ],
-                "rector:check": [
-                    "rector process --dry-run"
-                ],
-                "pint": [
-                    "pint"
-                ],
-                "pint:check": [
-                    "pint --test"
-                ],
-                "check": [
-                    "@pint:check",
-                    "@rector:check",
-                    "@analyse"
-                ],
-                "test": [
-                    "phpunit"
-                ],
-                "test:browser": [
-                    "phpunit --testsuite Browser"
-                ],
-                "test:todomvc": [
-                    "phpunit --testsuite TodoMvc"
-                ],
-                "todomvc:fetch": [
-                    "scripts/fetch-todomvc.sh"
-                ],
-                "test:coverage": [
-                    "XDEBUG_MODE=coverage phpunit --coverage-text"
-                ],
-                "test:coverage-html": [
-                    "XDEBUG_MODE=coverage phpunit --coverage-html=build/coverage"
-                ],
-                "infection": [
-                    "infection --threads=max"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -10862,11 +10812,11 @@
                 "issues": "https://github.com/Vusys/tetryon/issues",
                 "source": "https://github.com/Vusys/tetryon"
             },
-            "time": "2026-11-16T21:37:02+00:00"
+            "time": "2026-11-16T22:17:14+00:00"
         },
         {
             "name": "vusys/zefram",
-            "version": "dev-main",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/zefram.git",
@@ -10897,7 +10847,6 @@
                 "ext-pcov": "Required to capture per-test coverage; without it Zefram disables itself and all tests run.",
                 "laravel/framework": "For the artisan zefram:clear / zefram:stats commands."
             },
-            "default-branch": true,
             "bin": [
                 "bin/zefram"
             ],
@@ -10914,45 +10863,7 @@
                     "Vusys\\Zefram\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Vusys\\Zefram\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "analyse": [
-                    "phpstan analyse"
-                ],
-                "analyze": [
-                    "@analyse"
-                ],
-                "rector": [
-                    "rector process"
-                ],
-                "rector:check": [
-                    "rector process --dry-run"
-                ],
-                "pint": [
-                    "pint"
-                ],
-                "pint:check": [
-                    "pint --test"
-                ],
-                "check": [
-                    "@pint:check",
-                    "@rector:check",
-                    "@analyse"
-                ],
-                "test": [
-                    "phpunit"
-                ],
-                "test:e2e": [
-                    "phpunit --testsuite e2e"
-                ],
-                "infection": [
-                    "infection --threads=max"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -11044,19 +10955,10 @@
             "time": "2026-11-15T13:41:13+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "vusys/tetryon",
-            "version": "dev-feat/74-managed-server",
-            "alias": "0.7.99",
-            "alias_normalized": "0.7.99.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "vusys/laravel-quantum-slipstream-drive": 20,
-        "vusys/tetryon": 20,
-        "vusys/zefram": 20
+        "vusys/laravel-quantum-slipstream-drive": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
