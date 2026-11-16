@@ -18,6 +18,7 @@
         "vusys/laravel-smarty": "^0.22"
     },
     "require-dev": {
+        "brianium/paratest": "^7.20",
         "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.23",
         "infection/infection": "^0.32",
@@ -30,8 +31,8 @@
         "phpunit/phpunit": "^12.5.12",
         "rector/rector": "^2.0",
         "vusys/laravel-runabout": "^1.4",
-        "vusys/tetryon": "^0.7",
-        "vusys/zefram": "dev-main"
+        "vusys/tetryon": "^0.8",
+        "vusys/zefram": "^0.1"
     },
     "autoload": {
         "psr-4": {
@@ -115,12 +116,5 @@
         ]
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "name": "zefram",
-            "type": "vcs",
-            "url": "https://github.com/Vusys/zefram.git"
-        }
-    ]
+    "prefer-stable": true
 }
