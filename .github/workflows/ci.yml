@@ -108,7 +108,11 @@ jobs:
       # Each paratest worker gets its own Tetryon-managed server and SQLite
       # database (tetryon#74), so there's no shared server to start here.
       - name: Run browser tests (3 workers, managed servers)
-        run: php artisan test --parallel --processes=3 -c phpunit.browser.xml
+        # Laravel's parallel setup connects to the base database before
+        # switching each worker to <name>_test_<token>.
+        run: |
+          touch database/tetryon.sqlite
+          php artisan test --parallel --processes=3 -c phpunit.browser.xml
         env:
           TETRYON_MANAGED_SERVER: true
           TETRYON_SUITE_REPORT: 1
