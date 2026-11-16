@@ -19,10 +19,12 @@
         </testsuite>
     </testsuites>
     <extensions>
-        <!-- Never skips these tests, whose app code runs in the served process (zefram#80). -->
+        <!-- Never skips these tests, whose app code runs in the served process (zefram#80).
+             Its own cache: a full run prunes every other fingerprint under its cache
+             directory, so sharing .zefram would wipe the main suite's records. -->
         <bootstrap class="Vusys\Zefram\PhpUnit\ZeframExtension">
             <parameter name="enabled" value="true"/>
-            <parameter name="cacheDirectory" value=".zefram"/>
+            <parameter name="cacheDirectory" value=".zefram-browser"/>
         </bootstrap>
     </extensions>
     <php>
