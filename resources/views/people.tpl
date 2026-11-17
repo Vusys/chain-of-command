@@ -28,7 +28,6 @@
                 {include file="partials/directory-row.tpl"}
             {/foreach}
         </ul>
-        {* nofilter until laravel-smarty prints an Htmlable as HTML (Vusys/laravel-smarty#68) *}
-        {$results->links('pagination::simple-tailwind') nofilter}
+        {$results->links('pagination::simple-tailwind')}
     {/if}
 {/block}
