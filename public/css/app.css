@@ -61,3 +61,12 @@ h2 { font-size: 16px; margin: 24px 0 8px; }
 .slider output { min-width: 72px; font-variant-numeric: tabular-nums; color: var(--ink); }
 [data-chart-body] { transition: opacity 150ms ease; }
 [data-chart-body].is-changing { opacity: 0; }
+
+.nav { margin-left: auto; display: flex; gap: 16px; }
+.nav a { color: var(--accent); text-decoration: none; }
+.as-of select { font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.directory { list-style: none; margin: 0 0 16px; padding: 0; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+.directory .person { padding: 8px 16px; }
+.directory .person:first-child { border-top: 0; }
+mark { background: #fff3bf; color: inherit; border-radius: 2px; }
+nav[role="navigation"] { display: flex; gap: 12px; }
