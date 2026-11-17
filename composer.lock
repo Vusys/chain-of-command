@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccd384acc80d03076f21899e7e68e6d3",
+    "content-hash": "ab683f1200167c0898bc8cb40d02346f",
     "packages": [
         {
             "name": "brick/math",
@@ -6346,16 +6346,16 @@
         },
         {
             "name": "vusys/laravel-quantum-slipstream-drive",
-            "version": "v0.1.0",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/laravel-quantum-slipstream-drive.git",
-                "reference": "13fcd6ee06fcf328f6920edb7b8bcc5e71c163a8"
+                "reference": "1d4579f7f903139042246d1a4e3a34891ea55508"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/13fcd6ee06fcf328f6920edb7b8bcc5e71c163a8",
-                "reference": "13fcd6ee06fcf328f6920edb7b8bcc5e71c163a8",
+                "url": "https://api.github.com/repos/Vusys/laravel-quantum-slipstream-drive/zipball/1d4579f7f903139042246d1a4e3a34891ea55508",
+                "reference": "1d4579f7f903139042246d1a4e3a34891ea55508",
                 "shasum": ""
             },
             "require": {
@@ -6392,9 +6392,9 @@
             "description": "A scoped Eloquent identity map, process-truth engine, and query-elision planner for Laravel.",
             "support": {
                 "issues": "https://github.com/Vusys/laravel-quantum-slipstream-drive/issues",
-                "source": "https://github.com/Vusys/laravel-quantum-slipstream-drive/tree/v0.1.0"
+                "source": "https://github.com/Vusys/laravel-quantum-slipstream-drive/tree/v0.2.0"
             },
-            "time": "2026-11-17T11:48:22+00:00"
+            "time": "2026-11-17T16:56:54+00:00"
         },
         {
             "name": "vusys/laravel-smarty",

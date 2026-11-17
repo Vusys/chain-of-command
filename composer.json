@@ -14,7 +14,7 @@
         "laravel/tinker": "^3.0",
         "vusys/laravel-bitemporal": "^0.6",
         "vusys/laravel-nestedset": "^0.25",
-        "vusys/laravel-quantum-slipstream-drive": "^0.1",
+        "vusys/laravel-quantum-slipstream-drive": "^0.2",
         "vusys/laravel-smarty": "^0.23"
     },
     "require-dev": {
