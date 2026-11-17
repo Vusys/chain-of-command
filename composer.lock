@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d727c6e87542f1589d72566ee8c1b6d",
+    "content-hash": "3a3e0f77ab6e3c4786633623a44bc748",
     "packages": [
         {
             "name": "brick/math",
@@ -6399,16 +6399,16 @@
         },
         {
             "name": "vusys/laravel-smarty",
-            "version": "v0.22.0",
+            "version": "v0.23.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Vusys/laravel-smarty",
-                "reference": "549f35e57c455343e8f9a1644e7a5ca7b90f5bbf"
+                "url": "https://github.com/Vusys/laravel-smarty.git",
+                "reference": "9b18dff2d591f99b69ccbc081b4e987b270516fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/laravel-smarty/zipball/549f35e57c455343e8f9a1644e7a5ca7b90f5bbf",
-                "reference": "549f35e57c455343e8f9a1644e7a5ca7b90f5bbf",
+                "url": "https://api.github.com/repos/Vusys/laravel-smarty/zipball/9b18dff2d591f99b69ccbc081b4e987b270516fd",
+                "reference": "9b18dff2d591f99b69ccbc081b4e987b270516fd",
                 "shasum": ""
             },
             "require": {
@@ -6420,7 +6420,7 @@
             },
             "require-dev": {
                 "driftingly/rector-laravel": "^2.0",
-                "infection/infection": "^0.33 || ^0.34",
+                "infection/infection": "^0.33 || ^0.34 || ^0.35",
                 "larastan/larastan": "^2.9 || ^3.0",
                 "laravel/pennant": "^1.0|^2.0",
                 "laravel/pint": "^1.0",
@@ -6470,7 +6470,7 @@
                 "issues": "https://github.com/Vusys/laravel-smarty/issues",
                 "source": "https://github.com/Vusys/laravel-smarty"
             },
-            "time": "2026-07-07T22:38:41+00:00"
+            "time": "2026-11-17T09:00:51+00:00"
         }
     ],
     "packages-dev": [
