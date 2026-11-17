@@ -29,3 +29,6 @@ Thumbs.db
 /tests/Browser/Artifacts
 /.zefram
 /.zefram-browser
+
+# Compiled Smarty templates and cache
+/storage/framework/smarty

@@ -73,8 +73,11 @@ class DirectoryTest extends TestCase
 
     public function test_paging_keeps_the_filters(): void
     {
+        // A real link, not the escaped markup of one (laravel-smarty#68).
         $this->get('/people?on=2025-08-01&q=e')
-            ->assertSee('page=2', false)
-            ->assertSee('q=e', false);
+            ->assertSee('<nav role="navigation"', false)
+            ->assertSee('rel="next"', false)
+            ->assertSee('q=e&amp;page=2', false)
+            ->assertDontSee('&lt;nav', false);
     }
 }
