@@ -15,14 +15,14 @@ use Vusys\Tetryon\PHPUnit\ReuseBrowser;
  * and paging with the filters kept. One browser for the class.
  */
 #[Record]
-#[ReuseBrowser]
+#[ReuseBrowser(database: true)]
 final class DirectoryTest extends BrowserTestCase
 {
     use DatabaseTruncation;
 
-    protected function setUp(): void
+    // Seeded once for the class; each test starts from this checkpoint.
+    protected function authenticate(Browser $browser): void
     {
-        parent::setUp();
         $this->seed(DatabaseSeeder::class);
     }
 
