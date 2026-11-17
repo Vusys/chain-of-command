@@ -24,7 +24,7 @@ class DepartmentPathFunction
             return '';
         }
 
-        $names = Department::query()->ancestorsOf($department->getBounds())->defaultOrder()->pluck('name')->push($department->name);
+        $names = Department::query()->ancestorsOf($department)->defaultOrder()->pluck('name')->push($department->name);
 
         return e($names->implode(' › '));
     }

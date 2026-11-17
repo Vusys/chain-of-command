@@ -13,7 +13,7 @@
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
         "vusys/laravel-bitemporal": "^0.6",
-        "vusys/laravel-nestedset": "^0.24",
+        "vusys/laravel-nestedset": "^0.25",
         "vusys/laravel-quantum-slipstream-drive": "dev-master",
         "vusys/laravel-smarty": "^0.22"
     },
