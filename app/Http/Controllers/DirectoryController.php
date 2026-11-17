@@ -28,7 +28,7 @@ class DirectoryController extends Controller
         $results = Assignment::query()->validAt($on)->currentKnowledge()->excludeRetractions()
             ->when($department, fn (Builder $query, Department $department) => $query->whereIn(
                 'department_id',
-                Department::query()->whereDescendantOrSelf($department->getBounds())->select('id'),
+                Department::query()->whereDescendantOrSelf($department)->select('id'),
             ))
             ->when($q !== '', fn (Builder $query) => $query->where(fn (Builder $match) => $match
                 ->where('title', 'like', "%{$q}%")

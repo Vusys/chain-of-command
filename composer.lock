@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ac345a24a32dae1402043b58898f2de",
+    "content-hash": "0d727c6e87542f1589d72566ee8c1b6d",
     "packages": [
         {
             "name": "brick/math",
@@ -2042,16 +2042,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "3.12.1",
+            "version": "3.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "d7059e4c691d05ea1222b5124bed0f961be46e15"
+                "reference": "1f5f55bb4a9a230ff6d8a4ceccea31d10b0142ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d7059e4c691d05ea1222b5124bed0f961be46e15",
-                "reference": "d7059e4c691d05ea1222b5124bed0f961be46e15",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1f5f55bb4a9a230ff6d8a4ceccea31d10b0142ac",
+                "reference": "1f5f55bb4a9a230ff6d8a4ceccea31d10b0142ac",
                 "shasum": ""
             },
             "require": {
@@ -2131,7 +2131,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.12.1"
+                "source": "https://github.com/Seldaek/monolog/tree/3.13.0"
             },
             "funding": [
                 {
@@ -2143,7 +2143,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-29T19:21:12+00:00"
+            "time": "2026-11-16T10:43:05+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -6263,16 +6263,16 @@
         },
         {
             "name": "vusys/laravel-nestedset",
-            "version": "v0.24.4",
+            "version": "v0.25.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Vusys/laravel-nestedset",
-                "reference": "ed740b2985a73ea93d865878d8f5ada725efa8ae"
+                "url": "https://github.com/Vusys/laravel-nestedset.git",
+                "reference": "535c260bb7573ddf57deefa0dd5d5f5d62acde06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/laravel-nestedset/zipball/ed740b2985a73ea93d865878d8f5ada725efa8ae",
-                "reference": "ed740b2985a73ea93d865878d8f5ada725efa8ae",
+                "url": "https://api.github.com/repos/Vusys/laravel-nestedset/zipball/535c260bb7573ddf57deefa0dd5d5f5d62acde06",
+                "reference": "535c260bb7573ddf57deefa0dd5d5f5d62acde06",
                 "shasum": ""
             },
             "require": {
@@ -6284,7 +6284,7 @@
             "require-dev": {
                 "brianium/paratest": "^7.0",
                 "driftingly/rector-laravel": "^2.0",
-                "infection/infection": "^0.33 || ^0.34",
+                "infection/infection": "^0.33 || ^0.34 || ^0.35",
                 "larastan/larastan": "^2.9|^3.0",
                 "laravel/pint": "^1.0",
                 "orchestra/testbench": "^9.0|^10.0|^11.0",
@@ -6301,6 +6301,11 @@
                 "laravel": {
                     "providers": [
                         "Vusys\\NestedSet\\NestedSetServiceProvider"
+                    ]
+                },
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
                     ]
                 }
             },
@@ -6337,7 +6342,7 @@
                 "issues": "https://github.com/vusys/laravel-nestedset/issues",
                 "source": "https://github.com/vusys/laravel-nestedset"
             },
-            "time": "2026-07-11T02:51:13+00:00"
+            "time": "2026-11-17T02:22:39+00:00"
         },
         {
             "name": "vusys/laravel-quantum-slipstream-drive",
