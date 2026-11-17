@@ -7,19 +7,21 @@ namespace Tests\Browser;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\DatabaseTruncation;
 use Vusys\Tetryon\PHPUnit\Browser;
+use Vusys\Tetryon\PHPUnit\ReuseBrowser;
 
 /**
  * The chart, driven in Firefox against the served app. DatabaseTruncation,
  * not RefreshDatabase: the server reads the rows this process seeds, so they
  * must be committed.
  */
+#[ReuseBrowser(database: true)]
 final class ChartTest extends BrowserTestCase
 {
     use DatabaseTruncation;
 
-    protected function setUp(): void
+    // Seeded once for the class; each test starts from this checkpoint.
+    protected function authenticate(Browser $browser): void
     {
-        parent::setUp();
         $this->seed(DatabaseSeeder::class);
     }
 

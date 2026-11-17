@@ -8,15 +8,17 @@ use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\DatabaseTruncation;
 use Vusys\Tetryon\PHPUnit\Browser;
 use Vusys\Tetryon\PHPUnit\Record;
+use Vusys\Tetryon\PHPUnit\ReuseBrowser;
 
 #[Record]
+#[ReuseBrowser(database: true)]
 final class ReorganiseTest extends BrowserTestCase
 {
     use DatabaseTruncation;
 
-    protected function setUp(): void
+    // Seeded once for the class; each test starts from this checkpoint.
+    protected function authenticate(Browser $browser): void
     {
-        parent::setUp();
         $this->seed(DatabaseSeeder::class);
     }
 

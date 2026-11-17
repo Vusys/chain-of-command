@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9c7794970828f842bf9417a1fb541ea",
+    "content-hash": "9ac345a24a32dae1402043b58898f2de",
     "packages": [
         {
             "name": "brick/math",
@@ -10738,16 +10738,16 @@
         },
         {
             "name": "vusys/tetryon",
-            "version": "v0.8.1",
+            "version": "v0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vusys/tetryon.git",
-                "reference": "10a11209bb43993636fd7e739946362b497ba345"
+                "reference": "1742f064aad79f0c6fb2d16c5196e8d13ba2a39f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/10a11209bb43993636fd7e739946362b497ba345",
-                "reference": "10a11209bb43993636fd7e739946362b497ba345",
+                "url": "https://api.github.com/repos/Vusys/tetryon/zipball/1742f064aad79f0c6fb2d16c5196e8d13ba2a39f",
+                "reference": "1742f064aad79f0c6fb2d16c5196e8d13ba2a39f",
                 "shasum": ""
             },
             "require": {
@@ -10812,7 +10812,7 @@
                 "issues": "https://github.com/Vusys/tetryon/issues",
                 "source": "https://github.com/Vusys/tetryon"
             },
-            "time": "2026-11-16T22:57:21+00:00"
+            "time": "2026-11-17T01:58:27+00:00"
         },
         {
             "name": "vusys/zefram",
