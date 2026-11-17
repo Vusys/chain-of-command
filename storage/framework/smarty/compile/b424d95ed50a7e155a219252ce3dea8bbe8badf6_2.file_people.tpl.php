@@ -1,18 +1,18 @@
 <?php /*__SLF:/home/bryan/code/apps/chain-of-command/resources/views/people.tpl*/ ?><?php
-/* Smarty version 5.8.5, created on 2026-11-17 00:31:58
+/* Smarty version 5.8.5, created on 2026-11-17 01:44:25
   from 'file:/home/bryan/code/apps/chain-of-command/resources/views/people.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.5',
-  'unifunc' => 'content_6afba07eb5f717_86387732',
+  'unifunc' => 'content_6afbb179d7e5d2_11599251',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b424d95ed50a7e155a219252ce3dea8bbe8badf6' => 
     array (
       0 => '/home/bryan/code/apps/chain-of-command/resources/views/people.tpl',
-      1 => 1794875487,
+      1 => 1794879857,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/directory-row.tpl' => 1,
   ),
 ))) {
-function content_6afba07eb5f717_86387732 (\Smarty\Template $_smarty_tpl) {
+function content_6afbb179d7e5d2_11599251 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/bryan/code/apps/chain-of-command/resources/views';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 <?php /*__SLM:2*/
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16529467076afba07ea36cf3_23519277', "title");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17868697536afbb179cf9a02_32904092', "title");
 ?>
 
-<?php /*__SLM:33*/
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6220084286afba07ea5c232_85218610', "content");
+<?php /*__SLM:34*/
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_12877634946afbb179d14243_40979842', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/main.tpl", $_smarty_current_dir);
 }
 /* {block "title"} */
-class Block_16529467076afba07ea36cf3_23519277 extends \Smarty\Runtime\Block
+class Block_17868697536afbb179cf9a02_32904092 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/bryan/code/apps/chain-of-command/resources/views';
@@ -48,7 +48,7 @@ echo htmlspecialchars((string) ($_smarty_tpl->getValue('on')->format('j M Y')), 
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_6220084286afba07ea5c232_85218610 extends \Smarty\Runtime\Block
+class Block_12877634946afbb179d14243_40979842 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/bryan/code/apps/chain-of-command/resources/views';
@@ -125,10 +125,10 @@ $_smarty_tpl->renderSubTemplate("file:partials/directory-row.tpl", $_smarty_tpl-
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         </ul>
-        <?php /*__SLM:31*/
-echo htmlspecialchars((string) ($_smarty_tpl->getValue('results')->links('pagination::simple-tailwind')), ENT_QUOTES, 'UTF-8');?>
+                <?php /*__SLM:32*/
+echo $_smarty_tpl->getValue('results')->links('pagination::simple-tailwind');?>
 
-    <?php /*__SLM:32*/
+    <?php /*__SLM:33*/
 }
 }
 }
