@@ -11,6 +11,10 @@
     <header class="topbar">
         <a class="brand" href="{route name='chart'}">Chain of Command</a>
         <span class="company">Kestrel Labs</span>
+        <nav class="nav">
+            <a href="{route name='chart'}">Chart</a>
+            <a href="{route name='people.index'}">People</a>
+        </nav>
     </header>
     <main>{block name="content"}{/block}</main>
     <footer class="debug"><!--identity-map--></footer>

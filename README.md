@@ -7,10 +7,10 @@ An org chart with history: departments, people, roles and pay, viewable on any d
 | [laravel-nestedset](https://github.com/Vusys/laravel-nestedset) | The department tree |
 | [laravel-bitemporal](https://github.com/Vusys/laravel-bitemporal) | Each person's department, manager, title and salary over time, with corrections that keep the old belief on record |
 | [laravel-quantum-slipstream-drive](https://github.com/Vusys/laravel-quantum-slipstream-drive) | Serving repeated person lookups from memory; the page footer says how many |
-| [laravel-smarty](https://github.com/Vusys/laravel-smarty) | Every view |
+| [laravel-smarty](https://github.com/Vusys/laravel-smarty) | Every view, with class-backed plugins (`{highlight}`, `{department_path}`) and its pagination templates |
 | [laravel-runabout](https://github.com/Vusys/laravel-runabout) | A shuffled staffing journey with invariants (no loops in the chain of command, nobody reporting to a leaver) |
-| [tetryon](https://github.com/Vusys/tetryon) | Recorded browser tests |
-| [zefram](https://github.com/Vusys/zefram) | Skipping feature and journey tests whose executed files haven't changed (`composer test`); not the browser suite, see [zefram#80](https://github.com/Vusys/zefram/issues/80) |
+| [tetryon](https://github.com/Vusys/tetryon) | Recorded browser tests, run in parallel on managed per-worker servers, with one browser reused per class |
+| [zefram](https://github.com/Vusys/zefram) | Skipping feature and journey tests whose executed files haven't changed (`composer test`); browser tests always run, since the served app is out of process ([zefram#80](https://github.com/Vusys/zefram/issues/80)) |
 
 ## Running it
 
@@ -21,7 +21,7 @@ php artisan migrate:fresh --seed
 php artisan serve
 ```
 
-Open `/chart`, step through the months, and set "As we knew it on" to see what the company believed on a past date.
+Open `/chart`, step through the months, and set "As we knew it on" to see what the company believed on a past date. `/people` is the directory: search by name or title, narrow to a department and every team under it, and pick the date.
 
 ## Checks and tests
 
